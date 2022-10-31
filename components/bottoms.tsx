@@ -2,7 +2,7 @@ import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export const Tops = () => {
+export const Bottoms = () => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -23,9 +23,9 @@ export const Tops = () => {
     },
   };
   return (
-    <div className="bg-pink-100 p-4 md:px-8 pb-8">
+    <div className="bg-white p-4 md:px-8 pb-8">
       <div className="p-4 font-serif font-bold text-3xl text-gray-900">
-        Tops
+        Bottoms
       </div>
       <Carousel
         swipeable={false}
@@ -45,42 +45,42 @@ export const Tops = () => {
       >
         <div>
           <Card
-            title="Apres Ski Fair Isle Turtleneck Sweater"
-            imageUrl="./sweater.jpg"
-            category={{ name: "$250.00", href: "#" }}
-            description="Alex Mill"
+            title="AGOLDE"
+            imageUrl="./agolde.jpg"
+            category={{ name: "$178.00", href: "#" }}
+            description="The 90's Pinch Waist Jeans"
           />
         </div>
         <div>
           <Card
-            title="Velvet"
-            imageUrl="./velvet.jpg"
-            category={{ name: "$158.00", href: "#" }}
-            description="Ray Sweater"
+            title="Triarchy"
+            imageUrl="./triarchy.jpg"
+            category={{ name: "$239.00", href: "#" }}
+            description="High Rise Wide Leg Jeans"
           />
         </div>
         <div>
           <Card
-            title="For Love & Lemons"
-            imageUrl="./forlove.jpg"
-            category={{ name: "$175.50", href: "#" }}
-            description="Vera Cropped Cutout Sweater"
+            title="MOTHER"
+            imageUrl="./MOTHER.jpg"
+            category={{ name: "$228.50", href: "#" }}
+            description="SNACKS! High Waist Double Stack Ankle Jeans"
           />
         </div>
         <div>
           <Card
-            title="Pistola Denim"
-            imageUrl="./pistola.jpg"
-            category={{ name: "$158.00", href: "#" }}
-            description="Drea Sweater"
+            title="Sea"
+            imageUrl="./Sea.jpg"
+            category={{ name: "$295.00", href: "#" }}
+            description="Mikaela Plaid Pleated Miniskirt"
           />
         </div>
         <div>
           <Card
-            title="LINE"
-            imageUrl="./LINE.jpg"
-            category={{ name: "$199.00", href: "#" }}
-            description="Freya Cropped Turtleneck"
+            title="AG"
+            imageUrl="./AG.jpg"
+            category={{ name: "$225.00", href: "#" }}
+            description="Saige Straight Jeans  "
           />
         </div>
       </Carousel>
