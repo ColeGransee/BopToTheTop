@@ -7,10 +7,10 @@ export const Header = () => {
         <div className="text-center">
           <h1 className="text-5xl tracking-tight font-serif font-bold text-gray-800">
             <Link href="/">shopbop</Link>
-            <h2 className="p-2 text-3xl tracking-tight font-serif font-bold text-gray-700">
-              <Link href="/">- bop to the top -</Link>
-            </h2>
           </h1>
+          <h2 className="p-2 text-3xl tracking-tight font-serif font-bold text-gray-700">
+            <Link href="/">- bop to the top -</Link>
+          </h2>
           <div className="space-x-10 pt-6 flex justify-between">
             <Link href="/about">
               <a className="text-gray-600 hover:text-gray-500">about</a>

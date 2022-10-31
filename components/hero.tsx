@@ -14,7 +14,7 @@ export const Hero = () => {
           <Typewriter
             options={{
               strings: [
-                "hot looks",
+                "high fashion",
                 "personalized picks",
                 "everyday essentials",
                 "top-shelf design",
