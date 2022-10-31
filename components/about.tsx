@@ -1,104 +1,46 @@
 export const AboutHero = () => {
   return (
-    <div className="bg-egg px-4 md:px-8 pb-8 pt-4">
-      <div className="px-2 bg-offwhite rounded pb-4">
-        <div className="grid justify-items-center">
-          <div className="bg-egg w-3/4 text-5xl sm-text-3xl text-center font-serif text-dustypink outline outline-double outline-gray-400 rounded shadow py-6 my-6">
-            About Me
-          </div>
-          <div className=" text-4xl font-serif text-gray-700 font-bold text-center pt-4 pb-2">
-            Hi, I&apos;m Allie!
-          </div>
-          <div className="text-lg sm-text-md font-serif font-bold text-gray-700">
-            {" "}
-            welcome to my blog :-)
-          </div>
-          <img
-            src="./profile.jpg"
-            className="w-full md:w-1/2 rounded border border-gray-700"
-            alt=""
-          />
-        </div>
+    <div className="bg-egg">
+      <div className="text-4xl text-center font-serif font-bold text-gray-900 py-6">
+        About
+      </div>
+      <div className="grid justify-items-center">
         <div className="flex flex-col px-2 md:px-20">
           <div className="flex justify-start text-4xl font-serif text-gray-700 font-bold py-4">
-            why the blog?
+            how to play
           </div>
           <div className="flex justify-center text-lg font-serif text-gray-600">
-            I started aleekat to give myself a creative outlet to write about my
-            experiences, interests, and lessons learned while navigating life in
-            my twenties. My interest in studying computer science set in my
-            sophomore year of college, when I decided to change my life plans
-            and pursue the major. I hope to inspire other women in tech by
-            sharing my journey.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci
+            phasellus egestas tellus rutrum tellus pellentesque eu. Venenatis
+            urna cursus eget nunc scelerisque viverra mauris in. At tellus at
+            urna condimentum mattis pellentesque id nibh. Est ultricies integer
+            quis auctor elit sed. Id neque aliquam vestibulum morbi blandit
+            cursus risus at ultrices. Lorem mollis aliquam ut porttitor leo a
+            diam sollicitudin. Dis parturient montes nascetur ridiculus mus.
+            Faucibus interdum posuere lorem ipsum dolor. Malesuada fames ac
+            turpis egestas maecenas. Lobortis elementum nibh tellus molestie.
+            Porta non pulvinar neque laoreet suspendisse interdum consectetur.
+            Viverra accumsan in nisl nisi scelerisque eu ultrices vitae. In
+            nulla posuere sollicitudin aliquam ultrices sagittis orci. Hendrerit
+            gravida rutrum quisque non tellus orci ac auctor. Turpis egestas
+            pretium aenean pharetra.
           </div>
           <div className="flex justify-start text-4xl font-serif text-gray-700 font-bold py-4">
-            who am I?
+            the perks
           </div>
           <div className="flex justify-center text-lg font-serif text-gray-600">
-            I&apos;m an earth-loving, creative, goofy person. I love to
-            adventure, try new things, and meet new people! I currently live in
-            Madison, WI and am a senior at UW-Madison studying computer science
-            and entrepreneurship. I hope to use these skills to make the world a
-            better place. My family means the world to me and I would be lost
-            without them.
-          </div>
-
-          <div className="grid justify-items-center mb-8">
-            <div className="bg-[url('/floral.png')] rounded w-3/4 mt-10 p-4 border border-1 border-dustypink">
-              <div className="bg-egg rounded p-4 border border-1 border-dustypink">
-                <div className="flex justify-center text-2xl font-serif text-gray-700 font-bold pb-4">
-                  fun facts about me:
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-sm font-serif text-gray-600 pt-2">
-                  <div className="col-span-1 flex justify-center">
-                    I have an 8 year old cat named Moses
-                  </div>
-                  <div className="col-span-1 flex justify-center">
-                    My favorite movie as a kid was Finding Nemo
-                  </div>
-                  <div className="col-span-1 flex justify-center">
-                    I have been a vegetarian since 5th grade :-)
-                  </div>
-                  <div className="col-span-1 flex justify-center">
-                    My favorite color is terracotta orange
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="grid justify-items-center">
-            <div className="grid grid-cols-3 gap-4 text-sm font-serif text-gray-600 pt-2 sm:w-full md:w-3/4">
-              <img
-                src="./family.jpg"
-                className="outline outline-gray-600"
-                alt=""
-              />
-              <img
-                src="./concert.jpg"
-                className="outline outline-dustypink"
-                alt=""
-              />
-              <img
-                src="./friends.jpg"
-                className="outline outline-gray-600"
-                alt=""
-              />
-              <img
-                src="./seth.jpg"
-                className="outline outline-dustypink"
-                alt=""
-              />
-              <img
-                src="./valpo.jpg"
-                className="outline outline-gray-600"
-                alt=""
-              />
-              <img
-                src="./mosie.jpg"
-                className="outline outline-dustypink"
-                alt=""
-              />
-            </div>
+            Laoreet suspendisse interdum consectetur libero id. Pretium nibh
+            ipsum consequat nisl vel pretium lectus quam id. Sollicitudin nibh
+            sit amet commodo nulla facilisi nullam. In aliquam sem fringilla ut
+            morbi tincidunt augue interdum velit. Porttitor eget dolor morbi non
+            arcu. Nulla facilisi morbi tempus iaculis urna. Sed tempus urna et
+            pharetra pharetra massa. Ultrices dui sapien eget mi proin sed. Quis
+            risus sed vulputate odio ut enim. Dui vivamus arcu felis bibendum ut
+            tristique et. Massa eget egestas purus viverra accumsan in nisl nisi
+            scelerisque. Quis imperdiet massa tincidunt nunc pulvinar sapien.
+            Velit ut tortor pretium viverra suspendisse potenti nullam. Massa
+            sed elementum tempus egestas sed sed.
           </div>
         </div>
       </div>
