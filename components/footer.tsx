@@ -11,7 +11,9 @@ export const Footer = () => {
         {/*  ))}*/}
         {/*</div>*/}
         {/*<div className="mt-8 md:mt-0 md:order-1">*/}
-        <p className="text-center text-base text-gray-400">&copy; Aleekat</p>
+        <p className="text-center text-base text-gray-400">
+          © 1999-2022 BOP LLC. All Rights Reserved
+        </p>
         {/*</div>*/}
       </div>
     </footer>
