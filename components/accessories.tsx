@@ -24,8 +24,8 @@ export const Accessories = () => {
   };
   return (
     <div className="bg-blue-100 p-4 md:px-8 pb-8">
-      <div className="p-4 font-serif font-bold text-3xl text-gray-900">
-        Bottoms
+      <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
+        Accessories
       </div>
       <Carousel
         swipeable={false}

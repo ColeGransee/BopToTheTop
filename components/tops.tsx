@@ -23,8 +23,8 @@ export const Tops = () => {
     },
   };
   return (
-    <div className="bg-pink-100 p-4 md:px-8 pb-8">
-      <div className="p-4 font-serif font-bold text-3xl text-gray-900">
+    <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
+      <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
         Tops
       </div>
       <Carousel
