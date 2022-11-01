@@ -1,6 +1,6 @@
 BopToTheTop
 
-CS564 Team #2 Shopbop BopToTheTop project
+CS639 Team #2 Shopbop BopToTheTop project
 
 1) run "npm install yarn"
 2) run "yarn add prettier"
