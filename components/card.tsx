@@ -1,4 +1,8 @@
 export const Card = (props: any) => {
+  const handleImageSelect = () => {
+    props.onSelect(props.imageUrl);
+  };
+
   return (
     <div className="flex justify-center mb-4">
       <div
@@ -19,8 +23,22 @@ export const Card = (props: any) => {
             </a>
           </p>
           <a href={props.href} className="block mt-2">
-            <p className="text-xl font-semibold text-gray-900">{props.title}</p>
-            <p className="mt-3 text-base text-gray-500">{props.description}</p>
+            <div>
+              <p className="text-xl font-semibold text-gray-900">
+                {props.title}
+              </p>
+              <div className="flex justify-between">
+                <p className="mt-3 text-base text-gray-500">
+                  {props.description}
+                </p>
+                <button
+                  className="py-2 px-3 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
+                  onClick={handleImageSelect}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
           </a>
         </div>
       </div>

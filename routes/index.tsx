@@ -6,16 +6,27 @@ import { Tops } from "../components/tops";
 import { Bottoms } from "../components/bottoms";
 import { Accessories } from "../components/accessories";
 import { Hero } from "../components/hero";
+import { Outfit } from "../components/outfit";
+import { useState } from "react";
 
 export const IndexPage = () => {
+  const [selectedTop, setSelectedTop] = useState<string>();
+  const [selectedBottom, setSelectedBottom] = useState<string>();
+  const [selectedAccessory, setSelectedAccessory] = useState<string>();
+
   return (
     <div>
       <Head />
       <Header />
       <Hero />
-      <Tops />
-      <Bottoms />
-      <Accessories />
+      <Tops onSelect={setSelectedTop} />
+      <Bottoms onSelect={setSelectedBottom} />
+      <Accessories onSelect={setSelectedAccessory} />
+      <Outfit
+        selectedTop={selectedTop}
+        selectedBottom={selectedBottom}
+        selectedAccessory={selectedAccessory}
+      />
       <Footer />
     </div>
   );
