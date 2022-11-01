@@ -2,7 +2,7 @@ import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export const Accessories = () => {
+export const Accessories = (props: any) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -23,7 +23,7 @@ export const Accessories = () => {
     },
   };
   return (
-    <div className="bg-blue-100 p-4 md:px-8 pb-8">
+    <div className="bg-blue-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
         Accessories
       </div>
@@ -49,6 +49,7 @@ export const Accessories = () => {
             imageUrl="./Freya.jpg"
             category={{ name: "$225.00", href: "#" }}
             description="Gardenia Straw Hat"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -57,6 +58,7 @@ export const Accessories = () => {
             imageUrl="./Sydney.jpg"
             category={{ name: "$355.00", href: "#" }}
             description="14k Gold Tiny Script Love Necklace"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -65,6 +67,7 @@ export const Accessories = () => {
             imageUrl="./Gucci.jpg"
             category={{ name: "$520.50", href: "#" }}
             description="Fork Square Sunglasses"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -72,7 +75,8 @@ export const Accessories = () => {
             title="Lele Sadoughi"
             imageUrl="./Lele.jpg"
             category={{ name: "$175.00", href: "#" }}
-            description="Multi Pearl Tweed Knotted Headband  "
+            description="Multi Pearl Tweed Knotted Headband"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -80,7 +84,8 @@ export const Accessories = () => {
             title="Lizzie Fortunato"
             imageUrl="./Lizzie.jpg"
             category={{ name: "$240.00", href: "#" }}
-            description="Wide Georgia Belt in Tan "
+            description="Wide Georgia Belt in Tan"
+            onSelect={props.onSelect}
           />
         </div>
       </Carousel>

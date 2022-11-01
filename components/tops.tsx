@@ -2,7 +2,7 @@ import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export const Tops = () => {
+export const Tops = (props: any) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -49,6 +49,7 @@ export const Tops = () => {
             imageUrl="./sweater.jpg"
             category={{ name: "$250.00", href: "#" }}
             description="Alex Mill"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -57,6 +58,7 @@ export const Tops = () => {
             imageUrl="./velvet.jpg"
             category={{ name: "$158.00", href: "#" }}
             description="Ray Sweater"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -65,6 +67,7 @@ export const Tops = () => {
             imageUrl="./forlove.jpg"
             category={{ name: "$175.50", href: "#" }}
             description="Vera Cropped Cutout Sweater"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -73,6 +76,7 @@ export const Tops = () => {
             imageUrl="./pistola.jpg"
             category={{ name: "$158.00", href: "#" }}
             description="Drea Sweater"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -81,6 +85,7 @@ export const Tops = () => {
             imageUrl="./LINE.jpg"
             category={{ name: "$199.00", href: "#" }}
             description="Freya Cropped Turtleneck"
+            onSelect={props.onSelect}
           />
         </div>
       </Carousel>

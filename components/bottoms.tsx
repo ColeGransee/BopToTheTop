@@ -2,7 +2,7 @@ import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export const Bottoms = () => {
+export const Bottoms = (props: any) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -49,6 +49,7 @@ export const Bottoms = () => {
             imageUrl="./agolde.jpg"
             category={{ name: "$178.00", href: "#" }}
             description="The 90's Pinch Waist Jeans"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -57,6 +58,7 @@ export const Bottoms = () => {
             imageUrl="./triarchy.jpg"
             category={{ name: "$239.00", href: "#" }}
             description="High Rise Wide Leg Jeans"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -65,6 +67,7 @@ export const Bottoms = () => {
             imageUrl="./MOTHER.jpg"
             category={{ name: "$228.50", href: "#" }}
             description="SNACKS! High Waist Double Stack Ankle Jeans"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -73,6 +76,7 @@ export const Bottoms = () => {
             imageUrl="./Sea.jpg"
             category={{ name: "$295.00", href: "#" }}
             description="Mikaela Plaid Pleated Miniskirt"
+            onSelect={props.onSelect}
           />
         </div>
         <div>
@@ -80,7 +84,8 @@ export const Bottoms = () => {
             title="AG"
             imageUrl="./AG.jpg"
             category={{ name: "$225.00", href: "#" }}
-            description="Saige Straight Jeans  "
+            description="Saige Straight Jeans"
+            onSelect={props.onSelect}
           />
         </div>
       </Carousel>
