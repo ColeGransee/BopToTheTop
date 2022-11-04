@@ -14,31 +14,43 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         <div className="grid md:grid-cols-3">
           <div className="flex flex-wrap justify-center">
             <div className="px-4">
-              <img
-                src={props.selectedTop}
-                alt="..."
-                className="shadow-lg rounded max-w-full h-auto align-middle border-none"
-              />
+              {!!props.selectedTop ? (
+                <img
+                  src={props.selectedTop}
+                  alt="..."
+                  className="shadow-lg rounded max-w-full h-auto align-middle border-none"
+                />
+              ) : (
+                <div className="p-60" />
+              )}
             </div>
           </div>
 
           <div className="flex flex-wrap justify-center">
             <div className="px-4">
-              <img
-                src={props.selectedBottom}
-                alt="..."
-                className="shadow-lg rounded max-w-full h-auto align-middle border-none"
-              />
+              {!!props.selectedBottom ? (
+                <img
+                  src={props.selectedBottom}
+                  alt="..."
+                  className="shadow-lg rounded max-w-full h-auto align-middle border-none"
+                />
+              ) : (
+                <div className="p-60" />
+              )}
             </div>
           </div>
 
           <div className="flex flex-wrap justify-center">
             <div className="px-4">
-              <img
-                src={props.selectedAccessory}
-                alt="..."
-                className="shadow-lg rounded max-w-full h-auto align-middle border-none"
-              />
+              {!!props.selectedAccessory ? (
+                <img
+                  src={props.selectedAccessory}
+                  alt="..."
+                  className="shadow-lg rounded max-w-full h-auto align-middle border-none"
+                />
+              ) : (
+                <div className="p-60" />
+              )}
             </div>
           </div>
         </div>
