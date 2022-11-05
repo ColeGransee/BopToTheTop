@@ -28,7 +28,7 @@ export const Accessories = (props: any) => {
         Accessories
       </div>
       <Carousel
-        swipeable={false}
+        swipeable={true}
         draggable={false}
         showDots={true}
         responsive={responsive}

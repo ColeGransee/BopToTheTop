@@ -28,7 +28,7 @@ export const Tops = (props: any) => {
         Tops
       </div>
       <Carousel
-        swipeable={false}
+        swipeable={true}
         draggable={false}
         showDots={true}
         responsive={responsive}
