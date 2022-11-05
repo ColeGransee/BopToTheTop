@@ -1,44 +1,76 @@
 export const About = () => {
   return (
-      <div className="bg-egg">
+    <div>
+      <div className="bg-egg border-b-2 border-double border-gray-600">
         {/*<div className="text-4xl text-center font-serif font-bold text-gray-900 py-6">*/}
         {/*  About*/}
         {/*</div>*/}
         <div className="grid justify-items-center py-6">
           <div className="flex flex-col px-2 md:px-20">
-            <div className="flex justify-start text-4xl font-serif text-gray-700 font-bold py-4">
-              About us
+            <div className="flex justify-center text-4xl font-serif text-gray-700 font-bold py-4">
+              What is BopToTheTop?
             </div>
-            <div className="flex justify-center text-lg font-serif text-gray-600">
-              BopTotheTop is a game site focused on selecting clothes featured in the given category of
-              ShopBop's apperal selection. With the image, users select one of each top, bottom, shoe,
-              and accessory based on random assortments of clothing items from Shopbop.
-              ToptotheBop brings recurring value and can create a delightful habit-forming product for the end user,
-              this game will involve creating a recurring way to discover and experience new items on Shopbop.
-              Our goal is to let users discover the latest apparel, activewear, shoes & accessories
-              from established and emerging designers in Shopbop.
-              We appeal to audiences of all ages.
-              We bring laughter and friendship to young people to love to dress up.
-              We also bring memories to older people who reminisce about dressing up dolls when they were young.
-            </div>
-
-            <div className="flex justify-start text-4xl font-serif text-gray-700 font-bold py-4">
-              how to play
-            </div>
-            <div className="flex justify-start text-lg font-serif text-gray-600">
-              1. the program provides the category of the items
-            </div>
-            <div className="flex justify-start text-lg font-serif text-gray-600">
-              2. user selects each top, bottom, shoe and accessory
-            </div>
-            <div className="flex justify-start text-lg font-serif text-gray-600">
-              3. submit the user outfit to the leaderboard
-            </div>
-            <div className="flex justify-start text-lg font-serif text-gray-600">
-              4. user upvote outfits among the leaderboard.
+            <div className="flex text-left justify-center text-lg font-serif text-gray-600">
+              BopToTheTop is a web app focused on selecting clothes featured in
+              the given category of ShopBop's apparel selection. With the image,
+              users select one of each: a top, bottom, and accessory.
+              BopToTheTop features ways in which you can create and discover new
+              outfits each week. The goal is to let users discover the latest
+              apparel, activewear, shoes & accessories from established and
+              emerging designers in Shopbop in exchange for rewards. We
+              excitement to people looking to discover a new love for designing
+              outfits. Engage with other creators through the leaderboard by
+              upvoting other outfits!
             </div>
           </div>
         </div>
       </div>
+      <div className="bg-white px-2 py-6 border-b-2 border-gray-600">
+        <div className="md:flex flex-row">
+          <img className="py-6" src="aboutimage.jpg" />
+          <div className="px-4">
+            <div className="flex justify-center text-4xl font-serif text-gray-700 font-bold py-4">
+              how to play
+            </div>
+            <div>
+              <div className="flex justify-start text-xl font-serif text-gray-700">
+                1. Weekly Prompt
+              </div>
+              <div className="flex justify-start text-md font-serif text-gray-600">
+                Each week users will receive the same weekly prompt in which
+                they will create their own outfit based on said prompt.
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-start text-xl font-serif text-gray-700">
+                2. Design Outfit
+              </div>
+              <div className="flex justify-start text-md font-serif text-gray-600">
+                Using the Shopbop catalog, design an outfit using a top, a
+                bottom, and an accessory.
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-start text-xl font-serif text-gray-700">
+                3. Publish Outfit
+              </div>
+              <div className="flex justify-start text-md font-serif text-gray-600">
+                Once you've finished choosing your outfit, publish it to your
+                page.
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-start text-xl font-serif text-gray-700">
+                4. Vote
+              </div>
+              <div className="flex justify-start text-md font-serif text-gray-600">
+                Go to the leaderboard and vote for your favorite outfits. One
+                user can only vote for 3 outfits total.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
