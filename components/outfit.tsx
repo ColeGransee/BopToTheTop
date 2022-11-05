@@ -11,49 +11,55 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         Outfit
       </div>
       <div className="flex justify-center overflow-none">
-        <div className="grid md:grid-cols-3">
-          <div className="flex flex-wrap justify-center">
-            <div className="px-4 py-2">
-              {!!props.selectedTop ? (
-                <img
-                  src={props.selectedTop}
-                  alt="..."
-                  className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
-                />
-              ) : (
-                <div className="py-60" />
-              )}
+        {!!props.selectedAccessory ||
+        !!props.selectedTop ||
+        !!props.selectedBottom ? (
+          <div className="grid md:grid-cols-3">
+            <div className="flex flex-wrap justify-center">
+              <div className="px-4 py-2">
+                {!!props.selectedTop ? (
+                  <img
+                    src={props.selectedTop}
+                    alt="..."
+                    className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
+                  />
+                ) : (
+                  <div />
+                )}
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap justify-center">
-            <div className="px-4 py-2">
-              {!!props.selectedBottom ? (
-                <img
-                  src={props.selectedBottom}
-                  alt="..."
-                  className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
-                />
-              ) : (
-                <div className="py-60 py-2" />
-              )}
+            <div className="flex flex-wrap justify-center">
+              <div className="px-4 py-2">
+                {!!props.selectedBottom ? (
+                  <img
+                    src={props.selectedBottom}
+                    alt="..."
+                    className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
+                  />
+                ) : (
+                  <div />
+                )}
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap justify-center">
-            <div className="px-4 py-2">
-              {!!props.selectedAccessory ? (
-                <img
-                  src={props.selectedAccessory}
-                  alt="..."
-                  className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
-                />
-              ) : (
-                <div className="py-60" />
-              )}
+            <div className="flex flex-wrap justify-center">
+              <div className="px-4 py-2">
+                {!!props.selectedAccessory ? (
+                  <img
+                    src={props.selectedAccessory}
+                    alt="..."
+                    className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
+                  />
+                ) : (
+                  <div />
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="py-60" />
+        )}
       </div>
     </div>
   );
