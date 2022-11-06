@@ -17,6 +17,19 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
           <div className="grid md:grid-cols-3">
             <div className="flex flex-wrap justify-center">
               <div className="px-4 py-2">
+                {!!props.selectedAccessory ? (
+                  <img
+                    src={props.selectedAccessory}
+                    alt="..."
+                    className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
+                  />
+                ) : (
+                  <div />
+                )}
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-center">
+              <div className="px-4 py-2">
                 {!!props.selectedTop ? (
                   <img
                     src={props.selectedTop}
@@ -34,20 +47,6 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
                 {!!props.selectedBottom ? (
                   <img
                     src={props.selectedBottom}
-                    alt="..."
-                    className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
-                  />
-                ) : (
-                  <div />
-                )}
-              </div>
-            </div>
-
-            <div className="flex flex-wrap justify-center">
-              <div className="px-4 py-2">
-                {!!props.selectedAccessory ? (
-                  <img
-                    src={props.selectedAccessory}
                     alt="..."
                     className="object-scale-down shadow-lg rounded max-w-full h-auto align-middle border-none"
                   />
