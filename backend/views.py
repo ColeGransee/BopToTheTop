@@ -35,5 +35,9 @@ def test_list(request):
             "dept":"MENS"
         }
         response = requests.get("https://api.shopbop.com/public/folders",params=parameters, headers=head)
-        return HttpResponse(response)
-        #return JsonResponse({"backend": "true", "message": "hello frontend!"})
+        json_response = response.json()
+        
+        # use this folders call to get the categories (and their IDs). Call this once at the start of our program.
+        for category in json_response["categories"]:
+            print(category['name'])
+        return JsonResponse({"backend": "true", "message": "hello frontend!"})
