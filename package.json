@@ -10,6 +10,8 @@
     "format": "prettier \"**/*.{ts,tsx}\" --write"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.13",
+    "heroicons": "^2.0.13",
     "next": "12.1.6",
     "npm": "^8.15.1",
     "prettier": "^2.7.1",
