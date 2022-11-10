@@ -9,7 +9,7 @@ export const Card = (props: any) => {
         key={props.title}
         className="w-3/4 flex flex-col flex-shrink-1 flex-wrap m-5 rounded-lg shadow-lg overflow-hidden"
       >
-        <div className="flex-shrink-0">
+        <div className="">
           <img
             className="h-fit w-full object-cover"
             src={props.imageUrl}

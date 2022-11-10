@@ -27,23 +27,23 @@ export const Tops = (props: any) => {
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
         Tops
       </div>
-      <Carousel
-        swipeable={true}
-        draggable={false}
-        showDots={true}
-        responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        autoPlaySpeed={1000}
-        keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-      >
-        <div>
+      <div className="">
+        <Carousel
+          swipeable={true}
+          draggable={false}
+          showDots={true}
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          autoPlaySpeed={1000}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
           <Card
             title="Apres Ski Fair Isle Turtleneck Sweater"
             imageUrl="./sweater.jpg"
@@ -51,8 +51,6 @@ export const Tops = (props: any) => {
             description="Alex Mill"
             onSelect={props.onSelect}
           />
-        </div>
-        <div>
           <Card
             title="Velvet"
             imageUrl="./velvet.jpg"
@@ -60,8 +58,6 @@ export const Tops = (props: any) => {
             description="Ray Sweater"
             onSelect={props.onSelect}
           />
-        </div>
-        <div>
           <Card
             title="For Love & Lemons"
             imageUrl="./forlove.jpg"
@@ -69,8 +65,6 @@ export const Tops = (props: any) => {
             description="Vera Cropped Cutout Sweater"
             onSelect={props.onSelect}
           />
-        </div>
-        <div>
           <Card
             title="Pistola Denim"
             imageUrl="./pistola.jpg"
@@ -78,8 +72,6 @@ export const Tops = (props: any) => {
             description="Drea Sweater"
             onSelect={props.onSelect}
           />
-        </div>
-        <div>
           <Card
             title="LINE"
             imageUrl="./LINE.jpg"
@@ -87,8 +79,8 @@ export const Tops = (props: any) => {
             description="Freya Cropped Turtleneck"
             onSelect={props.onSelect}
           />
-        </div>
-      </Carousel>
+        </Carousel>
+      </div>
     </div>
   );
 };

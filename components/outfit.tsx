@@ -5,6 +5,9 @@ interface IOutfitProps {
   selectedAccessory: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
+    const handlePost = () => {
+
+    }
   return (
     <div className="bg-egg p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
@@ -14,7 +17,7 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         {!!props.selectedAccessory ||
         !!props.selectedTop ||
         !!props.selectedBottom ? (
-          <div className="grid md:grid-cols-3">
+          <div className="relative grid md:grid-cols-3">
             <div className="flex flex-wrap justify-center">
               <div className="px-4 py-2">
                 {!!props.selectedAccessory ? (
@@ -58,6 +61,17 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
           </div>
         ) : (
           <div className="py-60" />
+        )}
+      </div>
+      <div className="flex justify-end">
+        {!!props.selectedAccessory ||
+        !!props.selectedTop ||
+        !!props.selectedBottom ? (
+          <button className="px-4 py-3 mx-3 my-4 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200" onClick={handlePost}>
+            Post
+          </button>
+        ) : (
+          <div />
         )}
       </div>
     </div>
