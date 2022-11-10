@@ -38,6 +38,12 @@ def test_list(request):
         json_response = response.json()
         
         # use this folders call to get the categories (and their IDs). Call this once at the start of our program.
+        categories = {}
         for category in json_response["categories"]:
-            print(category['name'])
+            if category['name'] == "Accessories" or category['name'] == "Clothing":
+                # iterate through that categories' children, after adding that categories' ID to dict
+                categories[category['name']] = category['id']
+                for child in category['children']:
+                    categories[child['name']] = child['id'] 
+        print(categories)
         return JsonResponse({"backend": "true", "message": "hello frontend!"})
