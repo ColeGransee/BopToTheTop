@@ -4,6 +4,7 @@
 import json
 import requests
 from django.http import JsonResponse
+from django.http import HttpResponse
 from .serializers import TestSerializer
 
 # def lambda_handler(event, context):
@@ -25,16 +26,14 @@ def test_list(request):
     # serialize them
     # return JSON
 
-        # head = {
-        # "accept":"application/json",
-        # "Client-Id": "Shopbop-UW-Team2",
-        # "Client-Version": "1.0.0"
-        # }
-        # parameters = {
-        #     "dept":"MENS"
-        # }
-        # response = requests.get("https://api.shopbop.com/public/folders",params=parameters, headers=head)
-        # print(response.json())
-        # json_str = json.dumps(response)
-        # return JsonResponse(json_str, safe=False)
-        return JsonResponse({"backend": "true", "message": "hello frontend!"})
+        head = {
+        "accept":"application/json",
+        "Client-Id": "Shopbop-UW-Team2",
+        "Client-Version": "1.0.0"
+        }
+        parameters = {
+            "dept":"MENS"
+        }
+        response = requests.get("https://api.shopbop.com/public/folders",params=parameters, headers=head)
+        return HttpResponse(response)
+        #return JsonResponse({"backend": "true", "message": "hello frontend!"})
