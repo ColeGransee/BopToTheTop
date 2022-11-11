@@ -4,9 +4,21 @@
 import json
 import requests
 from django.http import JsonResponse
-from .serializers import TestSerializer
+from .serializers import UserSerializer
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
-def test_list(request):
+@csrf_exempt
+@api_view(['POST'])
+def users_add(request):
+    if request.method == 'POST':
+        print(json.loads(request.body)['username'])
+        # insert the username in the database
+    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+
+def product_list(request):
     # call ShopBop API -> serialize response if needed -> return json response
     category = request.GET.get('category')
     searchQuery = request.GET.get('q')
