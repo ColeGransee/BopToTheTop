@@ -25,7 +25,7 @@ export const Tops = (props: any) => {
   };
   useEffect(() => {
     // GET request using fetch inside useEffect React hook
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("http://127.0.0.1:8000/tests/?category=Clothing&q=summer")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
