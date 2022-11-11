@@ -1,12 +1,22 @@
 # create endpoints here
 # go to urls.py to specify what url is gonna hit this view
-
 import json
 import requests
 from django.http import JsonResponse
 from django.http import HttpResponse
 from .serializers import TestSerializer
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
+@csrf_exempt
+@api_view(['POST'])
+def users_add(request):
+    if request.method == 'POST':
+        print(json.loads(request.body)['username'])
+        # insert the username in the database
+    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
 def get_category_ids():
     head = {
         "accept":"application/json",
