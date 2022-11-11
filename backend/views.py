@@ -73,4 +73,6 @@ def test_list(request):
 
         product_list.append(product_info)
 
-    return JsonResponse(product_list, safe=False)
+      return_response = JsonResponse(product_list, safe=False)
+      return_response['Cross-Origin-Opener-Policy'] ='*'
+      return return_response
