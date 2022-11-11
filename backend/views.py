@@ -4,36 +4,63 @@
 import json
 import requests
 from django.http import JsonResponse
+from django.http import HttpResponse
 from .serializers import TestSerializer
 
-def test_list(request):
-    # call ShopBop API -> serialize response if needed -> return json response
-    category = request.GET.get('category')
-    searchQuery = request.GET.get('q')
-    categories = {
-        "Clothing": "13243",
-        "Tops": "13252",
-        "Boots": "13205",
-        "Jeans": "13255",
-        "Shoes": "13265",
-        "Boots": "13205",
-        "Sandals": "13202",
-        "Hats": "13236",
-        "Jackets & Coats": "13256"
-    }
+def get_category_ids():
     head = {
         "accept":"application/json",
         "Client-Id": "Shopbop-UW-Team2",
         "Client-Version": "1.0.0"
-    }
+        }
     parameters = {
-        "categoryId":categories[category],
-        "q": searchQuery,
-        "limit": 2
+        "dept":"WOMENS"
     }
-    URL = "https://api.shopbop.com/public/categories/{}/products".format(categories[category])
+    response = requests.get("https://api.shopbop.com/public/folders",params=parameters, headers=head)
+    json_response = response.json()
+    
+    # use this folders call to get the categories (and their IDs). Call this once at the start of our program.
+    categories = {}
+    for category in json_response["categories"]:
+        if category['name'] == "Jewelry & Accessories" or category['name'] == "Clothing":
+            # iterate through that categories' children, after adding that categories' ID to dict
+            categories[category['name']] = category['id']
+            for child in category['children']:
+                categories[child['name']] = child['id'] 
+    return categories
 
-    response = requests.get(URL, params=parameters, headers=head)
-    response = response.json()  # type dictionary
+def test_list(request):
+    # call ShopBop API
+    # serialize them
+    # return JSON
+    categories = get_category_ids()
+    print(categories)
+    category = request.GET.get('category')
+    categoryId = categories[category]
 
-    return JsonResponse(response)
+    parameters = {
+        "dept":"WOMENS",
+        "offset":40
+    }
+    head = {
+    "accept":"application/json",
+    "Client-Id": "Shopbop-UW-Team2",
+    "Client-Version": "1.0.0"
+    }
+    response = requests.get(f"https://api.shopbop.com/public/categories/{categoryId}/products",params=parameters, headers=head)
+    json_response = response.json()
+
+    product_list = []
+    for result in json_response["products"]:
+        product_info = {}
+
+        product = result["product"]
+        product_info["Brand"] = product["designerName"]
+        product_info["Name"] = product["shortDescription"]
+        product_info["Price"] = product["retailPrice"]["price"]
+        product_info["Url"] = product["productDetailUrl"]
+        product_info["Image"] = product["colors"][0]["images"][0]["src"]
+
+        product_list.append(product_info)
+
+    return JsonResponse(product_list, safe=False)
