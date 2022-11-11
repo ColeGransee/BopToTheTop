@@ -75,4 +75,5 @@ def test_list(request):
 
     return_response = JsonResponse(product_list, safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
