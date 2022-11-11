@@ -71,7 +71,8 @@ def products_list(request):
         product_info["Image"] = product["colors"][0]["images"][0]["src"]
 
         product_list.append(product_info)
+
     return_response = JsonResponse(product_list, safe=False)
-    return_response['Access-Control-Allow-Origin'] ='*'
     return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
