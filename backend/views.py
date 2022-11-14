@@ -11,6 +11,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+categories = {}
+
 @csrf_exempt
 @api_view(['POST'])
 def users_add(request):
@@ -19,7 +21,7 @@ def users_add(request):
         # insert the username in the database
     return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
 
-# helper for products_list
+# helper method that runs on startup, as defined in apps.py. Gets category for Women's department.
 def get_category_ids():
     head = {
         "accept":"application/json",
@@ -33,17 +35,14 @@ def get_category_ids():
     json_response = response.json()
     
     # use this folders call to get the categories (and their IDs). Call this once at the start of our program.
-    categories = {}
     for category in json_response["categories"]:
         if category['name'] == "Jewelry & Accessories" or category['name'] == "Clothing":
             # iterate through that categories' children, after adding that categories' ID to dict
             categories[category['name']] = category['id']
             for child in category['children']:
                 categories[child['name']] = child['id'] 
-    return categories
 
 def products_list(request):
-    categories = get_category_ids()
     category = request.GET.get('category')
     categoryId = categories[category]
 
