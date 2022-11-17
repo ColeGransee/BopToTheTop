@@ -1,7 +1,7 @@
 import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Tops = (props: any) => {
   const responsive = {
@@ -23,18 +23,31 @@ export const Tops = (props: any) => {
       items: 1,
     },
   };
+
+  const [datas, setData] = useState<any[]>([]);
+
   useEffect(() => {
+    // running after all the loading has done.
     // GET request using fetch inside useEffect React hook
-    fetch("http://127.0.0.1:8000/tests/?category=Clothing&q=summer")
+    // Pants, Jeans, Tops, Hats
+    fetch("http://127.0.0.1:8000/products/?category=Hats&q=summer")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        setData(data);
+
+        for (let i = 0; i < 40; i++) {
+          console.log(data[i]);
+        }
       });
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
 
   return (
     <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
+      <div>
+        {/* <div>{JSON.stringify(datas)}</div> */}
+        {/* <div>{JSON.stringify()}</div> */}
+      </div>
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
         Tops
       </div>
@@ -56,10 +69,10 @@ export const Tops = (props: any) => {
           itemClass="carousel-item-padding-40-px"
         >
           <Card
-            title="Apres Ski Fair Isle Turtleneck Sweater"
-            imageUrl="./sweater.jpg"
-            category={{ name: "$250.00", href: "#" }}
-            description="Alex Mill"
+            title={datas[0]?.Name.toString()}
+            imageUrl={datas[0]?.Image.toString()}
+            category={{ name: datas[0]?.Price.toString(), href: "#" }}
+            description={datas[0]?.Brand.toString()}
             onSelect={props.onSelect}
           />
           <Card
