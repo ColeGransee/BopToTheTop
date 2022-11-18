@@ -35,9 +35,12 @@ export const Tops = (props: any) => {
       .then((data) => {
         setData(data);
 
-        for (let i = 0; i < 40; i++) {
-          console.log(data[i]);
-        }
+        console.log(data);
+        console.log(data[0]);
+        
+        // for (let i = 0; i < 40; i++) {
+        //   console.log(data[i]);
+        // }
       });
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
@@ -70,10 +73,13 @@ export const Tops = (props: any) => {
         >
           <Card
             title={datas[0]?.Name.toString()}
-            imageUrl={datas[0]?.Image.toString()}
+            imageUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p/prod/products/rcarm/rcarm300381e642/rcarm300381e642_1667424914527_2-0.jpg"}
             category={{ name: datas[0]?.Price.toString(), href: "#" }}
             description={datas[0]?.Brand.toString()}
             onSelect={props.onSelect}
+
+            // https://m.media-amazon.com/images/G/01/Shopbop/p
+            // https://m.media-amazon.com/images/G/01/Shopbop/p/prod/products/rcarm/rcarm300381e642/rcarm300381e642_1667424914527_2-0.jpg
           />
           <Card
             title="Velvet"
