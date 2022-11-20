@@ -1,6 +1,7 @@
 import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useEffect, useState } from "react";
 
 export const Accessories = (props: any) => {
   const responsive = {
@@ -22,6 +23,19 @@ export const Accessories = (props: any) => {
       items: 1,
     },
   };
+
+  const [datas, setData] = useState<any[]>([]);
+  useEffect(() => {
+    // running after all the loading has done.
+    // GET request using fetch inside useEffect React hook
+    fetch("http://127.0.0.1:8000/products/?category=Hats&q=summer") // Pants, Jeans, Tops, Hats
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      });
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
   return (
     <div className="bg-blue-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
@@ -43,51 +57,17 @@ export const Accessories = (props: any) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        <div>
+        {datas.map((user) => (
           <Card
-            title="Freya"
-            imageUrl="./Freya.jpg"
-            category={{ name: "$225.00", href: "#" }}
-            description="Gardenia Straw Hat"
+            title={user?.Name}
+            imageUrl={
+              "https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Image
+            }
+            category={{ name: user?.Price, href: "#" }}
+            description={user?.Brand}
             onSelect={props.onSelect}
           />
-        </div>
-        <div>
-          <Card
-            title="Sydney Evan"
-            imageUrl="./Sydney.jpg"
-            category={{ name: "$355.00", href: "#" }}
-            description="14k Gold Tiny Script Love Necklace"
-            onSelect={props.onSelect}
-          />
-        </div>
-        <div>
-          <Card
-            title="Gucci"
-            imageUrl="./Gucci.jpg"
-            category={{ name: "$520.50", href: "#" }}
-            description="Fork Square Sunglasses"
-            onSelect={props.onSelect}
-          />
-        </div>
-        <div>
-          <Card
-            title="Lele Sadoughi"
-            imageUrl="./Lele.jpg"
-            category={{ name: "$175.00", href: "#" }}
-            description="Multi Pearl Tweed Knotted Headband"
-            onSelect={props.onSelect}
-          />
-        </div>
-        <div>
-          <Card
-            title="Lizzie Fortunato"
-            imageUrl="./Lizzie.jpg"
-            category={{ name: "$240.00", href: "#" }}
-            description="Wide Georgia Belt in Tan"
-            onSelect={props.onSelect}
-          />
-        </div>
+        ))}
       </Carousel>
     </div>
   );

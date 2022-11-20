@@ -1,6 +1,7 @@
 import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useEffect, useState } from "react";
 
 export const Bottoms = (props: any) => {
   const responsive = {
@@ -22,6 +23,20 @@ export const Bottoms = (props: any) => {
       items: 1,
     },
   };
+
+  const [datas, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    // running after all the loading has done.
+    // GET request using fetch inside useEffect React hook
+    fetch("http://127.0.0.1:8000/products/?category=Jeans&q=summer") // Pants, Jeans, Tops, Hats
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      });
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
   return (
     <div className="bg-white p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
@@ -43,51 +58,17 @@ export const Bottoms = (props: any) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        <div>
+        {datas.map((user) => (
           <Card
-            title="AGOLDE"
-            imageUrl="./agolde.jpg"
-            category={{ name: "$178.00", href: "#" }}
-            description="The 90's Pinch Waist Jeans"
+            title={user?.Name}
+            imageUrl={
+              "https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Image
+            }
+            category={{ name: user?.Price, href: "#" }}
+            description={user?.Brand}
             onSelect={props.onSelect}
           />
-        </div>
-        <div>
-          <Card
-            title="Triarchy"
-            imageUrl="./triarchy.jpg"
-            category={{ name: "$239.00", href: "#" }}
-            description="High Rise Wide Leg Jeans"
-            onSelect={props.onSelect}
-          />
-        </div>
-        <div>
-          <Card
-            title="MOTHER"
-            imageUrl="./MOTHER.jpg"
-            category={{ name: "$228.50", href: "#" }}
-            description="SNACKS! High Waist Double Stack Ankle Jeans"
-            onSelect={props.onSelect}
-          />
-        </div>
-        <div>
-          <Card
-            title="Sea"
-            imageUrl="./Sea.jpg"
-            category={{ name: "$295.00", href: "#" }}
-            description="Mikaela Plaid Pleated Miniskirt"
-            onSelect={props.onSelect}
-          />
-        </div>
-        <div>
-          <Card
-            title="AG"
-            imageUrl="./AG.jpg"
-            category={{ name: "$225.00", href: "#" }}
-            description="Saige Straight Jeans"
-            onSelect={props.onSelect}
-          />
-        </div>
+        ))}
       </Carousel>
     </div>
   );
