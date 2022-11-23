@@ -5,9 +5,7 @@ interface IOutfitProps {
   selectedAccessory: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
-    const handlePost = () => {
-
-    }
+  const handlePost = () => {};
   return (
     <div className="bg-egg p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
@@ -67,7 +65,10 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         {!!props.selectedAccessory ||
         !!props.selectedTop ||
         !!props.selectedBottom ? (
-          <button className="px-4 py-3 mx-3 my-4 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200" onClick={handlePost}>
+          <button
+            className="px-4 py-3 mx-3 my-4 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
+            onClick={handlePost}
+          >
             Post
           </button>
         ) : (

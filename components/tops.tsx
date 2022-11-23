@@ -1,6 +1,7 @@
 import { Card } from "./card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useEffect, useState } from "react";
 
 export const Tops = (props: any) => {
   const responsive = {
@@ -22,8 +23,32 @@ export const Tops = (props: any) => {
       items: 1,
     },
   };
+
+  const [datas, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    // running after all the loading has done.
+    // GET request using fetch inside useEffect React hook
+    fetch("http://127.0.0.1:8000/products/?category=Tops&q=summer") // Pants, Jeans, Tops, Hats
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      });
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
+  //after the datas are changed.
+  // useEffect(() => {
+  //   console.log(datas);
+  // }, [datas]);
+
   return (
     <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
+      <div>
+        {datas.map((list) => {
+          return <div key={list.Price} {...list} />;
+        })}
+      </div>
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
         Tops
       </div>
@@ -44,41 +69,28 @@ export const Tops = (props: any) => {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          <Card
-            title="Apres Ski Fair Isle Turtleneck Sweater"
-            imageUrl="./sweater.jpg"
-            category={{ name: "$250.00", href: "#" }}
-            description="Alex Mill"
+          {/* <Card
+            title={datas[0]?.Name.toString()}
+            imageUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" + datas[0]?.Image}
+            category={{ name: datas[0]?.Price.toString(), href: "#" }}
+            description={datas[0]?.Brand.toString()}
             onSelect={props.onSelect}
-          />
-          <Card
-            title="Velvet"
-            imageUrl="./velvet.jpg"
-            category={{ name: "$158.00", href: "#" }}
-            description="Ray Sweater"
-            onSelect={props.onSelect}
-          />
-          <Card
-            title="For Love & Lemons"
-            imageUrl="./forlove.jpg"
-            category={{ name: "$175.50", href: "#" }}
-            description="Vera Cropped Cutout Sweater"
-            onSelect={props.onSelect}
-          />
-          <Card
-            title="Pistola Denim"
-            imageUrl="./pistola.jpg"
-            category={{ name: "$158.00", href: "#" }}
-            description="Drea Sweater"
-            onSelect={props.onSelect}
-          />
-          <Card
-            title="LINE"
-            imageUrl="./LINE.jpg"
-            category={{ name: "$199.00", href: "#" }}
-            description="Freya Cropped Turtleneck"
-            onSelect={props.onSelect}
-          />
+            // https://m.media-amazon.com/images/G/01/Shopbop/p
+          /> */}
+          
+          {datas.map((user) => (
+            <Card
+              title={user?.Name}
+              imageUrl={
+                "https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Image
+              }
+              category={{ name: user?.Price, href: "#" }}
+              description={user?.Brand}
+              onSelect={props.onSelect}
+            />
+          ))}
+
+
         </Carousel>
       </div>
     </div>

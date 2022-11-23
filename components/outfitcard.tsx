@@ -1,9 +1,7 @@
-import {ArrowUpIcon} from "@heroicons/react/20/solid";
+import { ArrowUpIcon } from "@heroicons/react/20/solid";
 
 export const OutfitCard = (props: any) => {
-  const handleUpvote = () => {
-
-  }
+  const handleUpvote = () => {};
   return (
     <div className="flex justify-center mb-4">
       <div
@@ -12,9 +10,9 @@ export const OutfitCard = (props: any) => {
       >
         <div className="grid grid-cols-3">
           <img
-              className="h-fit w-full object-cover"
-              src={props.accessoryUrl}
-              alt=""
+            className="h-fit w-full object-cover"
+            src={props.accessoryUrl}
+            alt=""
           />
           <img
             className="h-fit w-full object-cover"
@@ -22,9 +20,9 @@ export const OutfitCard = (props: any) => {
             alt=""
           />
           <img
-              className="h-fit w-full object-cover"
-              src={props.bottomUrl}
-              alt=""
+            className="h-fit w-full object-cover"
+            src={props.bottomUrl}
+            alt=""
           />
         </div>
         <div className="h-20 bg-white p-6 flex flex-col justify-between">
@@ -37,10 +35,10 @@ export const OutfitCard = (props: any) => {
               </div>
             </a>
             <button
-                className="px-3 py-2 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
-                onClick={handleUpvote}
+              className="px-3 py-2 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
+              onClick={handleUpvote}
             >
-              <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white"/>
+              <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white" />
             </button>
           </div>
         </div>
