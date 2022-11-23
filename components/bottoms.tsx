@@ -58,8 +58,9 @@ export const Bottoms = (props: any) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        {datas.map((user) => (
+        {datas.slice(0, 10).map((user) => (
           <Card
+            key={user.Url}
             title={user?.Name}
             imageUrl={
               "https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Image
