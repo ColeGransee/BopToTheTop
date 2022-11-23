@@ -8,9 +8,6 @@ module.exports = {
         'offwhite': '#FCF9F4',
         'dustypink': '#c28285',
       },
-      backgroundImage: {
-        'study': "url('../public/study.jpg')"
-      }
     },
   },
   plugins: [],

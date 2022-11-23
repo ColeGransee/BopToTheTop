@@ -8,6 +8,7 @@ import { Accessories } from "../components/accessories";
 import { Hero } from "../components/hero";
 import { Outfit } from "../components/outfit";
 import { useState } from "react";
+import { Prompt } from "../components/prompt";
 
 export const IndexPage = () => {
   const [selectedTop, setSelectedTop] = useState<string>();
@@ -18,6 +19,7 @@ export const IndexPage = () => {
     <div>
       <Head />
       <Header />
+      <Prompt />
       <Hero />
       <Tops onSelect={setSelectedTop} />
       <Bottoms onSelect={setSelectedBottom} />
