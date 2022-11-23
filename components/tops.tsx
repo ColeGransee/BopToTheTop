@@ -37,18 +37,8 @@ export const Tops = (props: any) => {
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
 
-  //after the datas are changed.
-  // useEffect(() => {
-  //   console.log(datas);
-  // }, [datas]);
-
   return (
     <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
-      <div>
-        {datas.map((list) => {
-          return <div key={list.Price} {...list} />;
-        })}
-      </div>
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
         Tops
       </div>
@@ -77,9 +67,10 @@ export const Tops = (props: any) => {
             onSelect={props.onSelect}
             // https://m.media-amazon.com/images/G/01/Shopbop/p
           /> */}
-          
-          {datas.map((user) => (
+
+          {datas.slice(0, 10).map((user) => (
             <Card
+              key={user.Url}
               title={user?.Name}
               imageUrl={
                 "https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Image
@@ -89,8 +80,6 @@ export const Tops = (props: any) => {
               onSelect={props.onSelect}
             />
           ))}
-
-
         </Carousel>
       </div>
     </div>

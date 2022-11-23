@@ -19,7 +19,11 @@ export const Card = (props: any) => {
         <div className="h-40 bg-white p-6 flex flex-col justify-between relative">
           <div className="w-3/4">
             <p className="text-xs md:text-sm font-medium text-orange-600">
-              <a href={props.category.href} className="hover:underline">
+              <a
+                href={props.category.href}
+                className="hover:underline"
+                key={props.name}
+              >
                 {props.category.name}
               </a>
             </p>
