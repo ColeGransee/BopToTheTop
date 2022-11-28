@@ -14,6 +14,21 @@ from django.db import connection
 
 categories = {}
 
+# // have a method to create a user
+# // have a method to verify existing user
+# - get 
+
+
+# // have a method to take outfit submission from frontend
+# - get username/user_id, an array contaning product details, created on.
+# - INSERT INTO tablename (user_id, user_submission, upvotes, created_on)
+#   VALUES ('user_id', 'array of sub details', 0, DTM);
+
+# // have a method to display all submissions
+# - SELECT column1, column2
+#   FROM tablename;
+# - then send all the data in JSON to frontend
+
 @csrf_exempt
 @api_view(['POST'])
 def users_add(request):
