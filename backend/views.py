@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.db import connection
 
 categories = {}
 
@@ -19,6 +20,10 @@ def users_add(request):
     if request.method == 'POST':
         print(json.loads(request.body)['username'])
         # insert the username in the database
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM user_accounts", [])
+            row = cursor.fetchone()
+    print(row)
     return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
 
 # helper method that runs on startup, as defined in apps.py. Gets category for Women's department.
