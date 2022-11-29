@@ -20,5 +20,8 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', views.products_list),
-    path('users/', views.users_add)
+    path('createusers/', views.user_add),
+    path('loginusers/', views.user_login),
+    path('submit/', views.outfit_add),
+    path('view/', views.outfit_view)
 ]

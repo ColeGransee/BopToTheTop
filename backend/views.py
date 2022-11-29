@@ -14,32 +14,67 @@ from django.db import connection
 
 categories = {}
 
-# // have a method to create a user
-# // have a method to verify existing user
-# - get 
-
-
-# // have a method to take outfit submission from frontend
-# - get username/user_id, an array contaning product details, created on.
-# - INSERT INTO tablename (user_id, user_submission, upvotes, created_on)
-#   VALUES ('user_id', 'array of sub details', 0, DTM);
-
-# // have a method to display all submissions
-# - SELECT column1, column2
-#   FROM tablename;
-# - then send all the data in JSON to frontend
-
+# handles user account creation
 @csrf_exempt
 @api_view(['POST'])
-def users_add(request):
+def user_add(request):
     if request.method == 'POST':
-        print(json.loads(request.body)['username'])
-        # insert the username in the database
+        # retrieve username and password
+        username = json.loads(request.body)['username']
+        password = json.loads(request.body)['password']
+        email_id = json.loads(request.body)['email']
+
+        # insert the credentials in the database
+        # TODO: handle exceptions, close cursor, test sql statement
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM user_accounts", [])
-            row = cursor.fetchone()
-    print(row)
+            cursor.execute("INSERT INTO user_accounts (user_id, username, password, email_id) VALUES ({username}, {password}, {email_id});", [username, password, email_id])
+            cursor.execute("SELECT MAX(user_id) FROM user_accounts", [])
+            user_id = cursor.fetchone()
+    print(user_id)
+    
+    # TODO: return user_id in the json response
     return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+
+# handles user login verification
+@csrf_exempt
+@api_view(['POST'])
+def user_check(request):
+    if request.method == 'POST':
+        # retrieve username and password
+        username = json.loads(request.body)['username']
+        password = json.loads(request.body)['password']
+
+        # check the credentials in the database
+        # TODO: handle exceptions, close cursor, test sql statement
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT user_id FROM user_accounts WHERE username = {username} AND password = {password};", [username, password])
+            user_id = cursor.fetchone()
+    print(user_id)
+    
+    # TODO: return user_id as json based on whether credentials are valid or not
+    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+
+# handles user's outfit submission
+@csrf_exempt
+@api_view(['POST'])
+def outfit_add(request):
+    # - get username/user_id, an array contaning product details, created on.
+    # - INSERT INTO tablename (user_id, user_submission, upvotes, created_on)
+    #   VALUES ('user_id', 'array of sub details', 0, DTM);
+
+    if request.method == 'POST':
+        # retrieve username and password
+        username = json.loads(request.body)['username']
+    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+
+# returns all outfit submissions
+def outfit_view(request):
+    # - SELECT column1, column2
+    #   FROM tablename;
+    # - then send all the data in JSON to frontend
+    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+
+
 
 # helper method that runs on startup, as defined in apps.py. Gets category for Women's department.
 def get_category_ids():
