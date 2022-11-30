@@ -20,46 +20,42 @@ categories = {}
 def user_add(request):
     if request.method == 'POST':
         # retrieve username and password
-        username = json.loads(request.body)['username']
-        password = json.loads(request.body)['password']
-        email_id = json.loads(request.body)['email']
+        username = str(json.loads(request.body)['username'])
+        password = str(json.loads(request.body)['password'])
 
         # insert the credentials in the database
-        # TODO: handle exceptions, close cursor, test sql statement
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO user_accounts (user_id, username, password, email_id) VALUES ({username}, {password}, {email_id});", [username, password, email_id])
-            cursor.execute("SELECT MAX(user_id) FROM user_accounts", [])
+            cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
             user_id = cursor.fetchone()
-    print(user_id)
-    
-    # TODO: return user_id in the json response
-    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+    ret_id = str(user_id[0])
+    return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user login verification
 @csrf_exempt
 @api_view(['POST'])
-def user_check(request):
-    if request.method == 'POST':
-        # retrieve username and password
-        username = json.loads(request.body)['username']
-        password = json.loads(request.body)['password']
+def user_login(request):
+    # retrieve username and password
+    username = json.loads(request.body)['username']
+    password = json.loads(request.body)['password']
 
-        # check the credentials in the database
-        # TODO: handle exceptions, close cursor, test sql statement
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT user_id FROM user_accounts WHERE username = {username} AND password = {password};", [username, password])
-            user_id = cursor.fetchone()
-    print(user_id)
-    
-    # TODO: return user_id as json based on whether credentials are valid or not
-    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+    # check the credentials in the database
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT user_id FROM user_accounts WHERE username = '{username}' AND password = '{password}';".format(username=username, password=password))
+        user_id = cursor.fetchone()
+
+    if user_id:
+        ret_id = str(user_id[0])
+    else:
+        ret_id = "-1"
+
+    return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user's outfit submission
 @csrf_exempt
 @api_view(['POST'])
 def outfit_add(request):
-    # - get username/user_id, an array contaning product details, created on.
-    # - INSERT INTO tablename (user_id, user_submission, upvotes, created_on)
+    # - get username/user_id, a json object contaning product details.
+    # - INSERT INTO tablename (user_id, user_submission, upvotes)
     #   VALUES ('user_id', 'array of sub details', 0, DTM);
 
     if request.method == 'POST':
