@@ -28,7 +28,11 @@ def user_add(request):
             cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
             user_id = cursor.fetchone()
     ret_id = str(user_id[0])
-    return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
+    return_response = JsonResponse([ret_id], safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
+    # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user login verification
 @csrf_exempt
@@ -47,8 +51,11 @@ def user_login(request):
         ret_id = str(user_id[0])
     else:
         ret_id = "-1"
-
-    return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
+    return_response = JsonResponse([ret_id], safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
+    # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user's outfit submission
 @csrf_exempt
