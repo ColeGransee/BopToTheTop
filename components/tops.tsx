@@ -37,6 +37,7 @@ export const Tops = (props: any) => {
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
 
+
   return (
     <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">

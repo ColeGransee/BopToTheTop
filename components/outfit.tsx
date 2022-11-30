@@ -5,7 +5,17 @@ interface IOutfitProps {
   selectedAccessory: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
-  const handlePost = () => {};
+  const handlePost = () => {
+    fetch("http://127.0.0.1:8000/users", {
+          method: 'POST',
+          body: JSON.stringify({
+            user_id: 'sethf',
+            username: 'allie',
+            password: 'sethandallie',
+            email: 'sethandallie@gmail.com',
+          })
+        })
+  };
   return (
     <div className="bg-egg p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
