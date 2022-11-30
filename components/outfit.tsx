@@ -6,13 +6,11 @@ interface IOutfitProps {
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const handlePost = () => {
-    fetch("http://127.0.0.1:8000/users", {
+    fetch("http://127.0.0.1:8000/createusers", {
           method: 'POST',
           body: JSON.stringify({
-            user_id: 'sethf',
             username: 'allie',
-            password: 'sethandallie',
-            email: 'sethandallie@gmail.com',
+            password: 'allieiscool',
           })
         })
   };
