@@ -1,14 +1,22 @@
 import Link from "next/link";
+import { useEffect } from "react";
 
-export const Header = () => {
+export const Header = (props: any) => {
   return (
     <div className="bg-white border-b-2 border-double border-gray-600">
       <div className="bg-gray-100 flex justify-end ">
-        <Link href="/login">
+        {!!props.email ? (
           <div className="px-4 py-2 font-gray-500 text-serif text-sm">
-            Sign in / Register
+            {" "}
+            hello, {props.email}
           </div>
-        </Link>
+        ) : (
+          <Link href="/login">
+            <div className="px-4 py-2 font-gray-500 text-serif text-sm">
+              Sign in / Register
+            </div>
+          </Link>
+        )}
       </div>
 
       <main className="flex justify-center mx-auto max-w-7xl px-4 sm:mt-10">

@@ -1,22 +1,21 @@
 import { PropsWithChildren } from "react";
+import { useRouter } from "next/router";
+
 interface IOutfitProps {
   selectedTop: any;
   selectedBottom: any;
   selectedAccessory: any;
+  user: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
+  const router = useRouter();
+
   const handlePost = () => {
-    fetch("http://127.0.0.1:8000/createusers/", {
-      method: "POST",
-      body: JSON.stringify({
-        username: "abcd",
-        password: "defg",
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+    if (props.user) {
+      console.log("I will post your outfit");
+    } else {
+      router.push("/login");
+    }
   };
 
   return (

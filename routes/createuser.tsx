@@ -5,10 +5,12 @@ import { useState } from "react";
 export const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [user, setUser] = useState("");
   const router = useRouter();
 
-  const handleSubmit = () => {
+  // @ts-ignore
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch("http://127.0.0.1:8000/createusers/", {
       method: "POST",
       body: JSON.stringify({
@@ -19,11 +21,8 @@ export const CreateUser = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        if (data != -1) {
-          router.replace("/");
-        } else {
-          router.replace("/createuser");
-        }
+        setUser(data);
+        router.replace("/login");
       });
   };
 
@@ -87,7 +86,7 @@ export const CreateUser = () => {
                   type="submit"
                   className="flex w-full justify-center rounded-md border border-transparent bg-orange-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                 >
-                  Sign in
+                  Create account
                 </button>
               </div>
               <div className="mt-6">

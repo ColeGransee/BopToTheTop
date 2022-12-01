@@ -8,7 +8,9 @@ export const Login = () => {
 
   const router = useRouter();
 
-  const handleSubmit = () => {
+  // @ts-ignore
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch("http://127.0.0.1:8000/loginusers/", {
       method: "POST",
       body: JSON.stringify({
@@ -18,11 +20,12 @@ export const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        localStorage.setItem("userID", data);
+        localStorage.setItem("username", email);
         if (data != -1) {
-          router.replace("/");
+          router.push("/");
         } else {
-          router.replace("/createuser");
+          router.push("/createuser");
         }
       });
   };
@@ -41,7 +44,7 @@ export const Login = () => {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" action="#" onSubmit={handleSubmit}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"

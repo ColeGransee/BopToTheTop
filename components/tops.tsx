@@ -34,7 +34,7 @@ export const Tops = (props: any) => {
       .then((data) => {
         setData(data);
       });
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
   }, []);
 
   return (
