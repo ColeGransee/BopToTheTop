@@ -17,6 +17,7 @@
     "prettier": "^2.7.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-hook-form": "^7.40.0",
     "react-multi-carousel": "^2.8.2",
     "typewriter-effect": "^2.19.0",
     "yarn": "^1.22.19"

@@ -2,7 +2,15 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <div className="bg-white pt-4 pb-2 border-b-2 border-double border-gray-600">
+    <div className="bg-white border-b-2 border-double border-gray-600">
+      <div className="bg-gray-100 flex justify-end ">
+        <Link href="/login">
+          <div className="px-4 py-2 font-gray-500 text-serif text-sm">
+            Sign in / Register
+          </div>
+        </Link>
+      </div>
+
       <main className="flex justify-center mx-auto max-w-7xl px-4 sm:mt-10">
         <div className="text-center">
           <h1 className="text-5xl tracking-tight font-serif font-bold text-gray-800">

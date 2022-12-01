@@ -6,14 +6,19 @@ interface IOutfitProps {
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const handlePost = () => {
-    fetch("http://127.0.0.1:8000/createusers", {
-          method: 'POST',
-          body: JSON.stringify({
-            username: 'allie',
-            password: 'allieiscool',
-          })
-        })
+    fetch("http://127.0.0.1:8000/createusers/", {
+      method: "POST",
+      body: JSON.stringify({
+        username: "abcd",
+        password: "defg",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
+
   return (
     <div className="bg-egg p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
