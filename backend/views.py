@@ -78,17 +78,18 @@ def outfit_add(request):
     return Response(submission_id, status=status.HTTP_201_CREATED)
 
 # returns all outfit submissions
+@csrf_exempt
+@api_view(['GET'])
 def outfit_view(request):
     # - SELECT column1, column2
     #   FROM tablename;
     # - then send all the data in JSON to frontend
-
     with connection.cursor() as cursor:
-        cursor.execute("SELECT username user_submission upvotes FROM user_submissions")
+        cursor.execute("SELECT username, user_submission, upvotes FROM user_submissions")
         outfits = cursor.fetchall()
-    for each in outfits:
-        print(each)
-    return Response(json.loads(request.body), status=status.HTTP_201_CREATED)
+    # for each in outfits:
+    #     print(each)
+    return Response(outfits, status=status.HTTP_201_CREATED)
 
 
 
