@@ -57,9 +57,12 @@ def user_login(request):
     return return_response
     # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
-# handles user's outfit submission
 @csrf_exempt
 @api_view(['POST'])
+#@params: 
+#   username - username for this submission
+#   user_submission - json array of top, bottom and accessory
+# returns: submission_id
 def outfit_add(request):
     # - get username/user_id, a json object contaning product details.
     # - INSERT INTO tablename (user_id, user_submission, upvotes)
@@ -69,7 +72,8 @@ def outfit_add(request):
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
         user_submission = str(json.loads(request.body)['user_submission'])
-        upvotes = json.loads(request.body)['upvotes']
+        # upvotes = json.loads(request.body)['upvotes']
+        upvotes = 0
 
     with connection.cursor() as cursor:
         cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
@@ -80,6 +84,7 @@ def outfit_add(request):
 # returns all outfit submissions
 @csrf_exempt
 @api_view(['GET'])
+#returns: all submissions as an array
 def outfit_view(request):
     # - SELECT column1, column2
     #   FROM tablename;
@@ -87,8 +92,6 @@ def outfit_view(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT username, user_submission, upvotes FROM user_submissions")
         outfits = cursor.fetchall()
-    # for each in outfits:
-    #     print(each)
     return Response(outfits, status=status.HTTP_201_CREATED)
 
 
