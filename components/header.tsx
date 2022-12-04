@@ -2,13 +2,14 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export const Header = (props: any) => {
+  const username = props.username;
   return (
     <div className="bg-white border-b-2 border-double border-gray-600">
       <div className="bg-gray-100 flex justify-end ">
-        {!!props.email ? (
+        {!!props.username ? (
           <div className="px-4 py-2 font-gray-500 text-serif text-sm">
             {" "}
-            hello, {props.email}
+            hello, {props.username}
           </div>
         ) : (
           <Link href="/login">
@@ -31,7 +32,10 @@ export const Header = (props: any) => {
             <Link href="/about">
               <a className="text-gray-600 hover:text-gray-500">about</a>
             </Link>
-            <Link href="/leaderboard">
+            <Link  href={{
+              pathname: '/leaderboard',
+              query:  username, // the data
+            }}>
               <a className="text-gray-600 hover:text-gray-500">leaderboard</a>
             </Link>
             <Link href="/share">

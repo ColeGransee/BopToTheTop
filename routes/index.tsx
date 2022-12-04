@@ -14,23 +14,23 @@ export const IndexPage = () => {
   const [selectedTop, setSelectedTop] = useState<string>();
   const [selectedBottom, setSelectedBottom] = useState<string>();
   const [selectedAccessory, setSelectedAccessory] = useState<string>();
-  const [user, setUser] = useState<string>();
-  const [email, setEmail] = useState<string>();
+  const [userID, setUserID] = useState<string>();
+  const [username, setUsername] = useState<string>();
 
   useEffect(() => {
     // Perform localStorage action
     if (localStorage.getItem("userID") && localStorage.getItem("username")) {
       // @ts-ignore
-      setUser(localStorage.getItem("userID"));
+      setUserID(localStorage.getItem("userID"));
       // @ts-ignore
-      setEmail(localStorage.getItem("username"));
+      setUsername(localStorage.getItem("username"));
     }
   }, []);
 
   return (
     <div>
       <Head />
-      <Header email={email} />
+      <Header username={username} />
       <Prompt />
       <Hero />
       <Tops onSelect={setSelectedTop} />
@@ -40,7 +40,7 @@ export const IndexPage = () => {
         selectedTop={selectedTop}
         selectedBottom={selectedBottom}
         selectedAccessory={selectedAccessory}
-        user={user}
+        userID={userID}
       />
       <Footer />
     </div>

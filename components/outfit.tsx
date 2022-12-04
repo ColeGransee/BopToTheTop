@@ -5,15 +5,37 @@ interface IOutfitProps {
   selectedTop: any;
   selectedBottom: any;
   selectedAccessory: any;
-  user: any;
+  userID: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const router = useRouter();
 
+  const userID = props.userID;
+  const selectedTop = props.selectedTop;
+  const selectedBottom = props.selectedBottom;
+  const selectedAccessory = props.selectedAccessory;
+
   const handlePost = () => {
-    if (props.user) {
-      console.log("I will post your outfit");
-    } else {
+    if (props.userID) {
+      fetch("http://127.0.0.1:8000/submit/", {
+        headers: {
+          Accept: 'application.json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+          userID: userID,
+          top: selectedTop,
+          bottom: selectedBottom,
+          accessory: selectedAccessory,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          });
+        }
+     else {
       router.push("/login");
     }
   };
