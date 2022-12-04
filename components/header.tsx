@@ -32,10 +32,7 @@ export const Header = (props: any) => {
             <Link href="/about">
               <a className="text-gray-600 hover:text-gray-500">about</a>
             </Link>
-            <Link  href={{
-              pathname: '/leaderboard',
-              query:  username, // the data
-            }}>
+            <Link href="/leaderboard">
               <a className="text-gray-600 hover:text-gray-500">leaderboard</a>
             </Link>
             <Link href="/share">
