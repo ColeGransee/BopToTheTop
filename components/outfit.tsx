@@ -1,11 +1,23 @@
 import { PropsWithChildren } from "react";
+import { useRouter } from "next/router";
+
 interface IOutfitProps {
   selectedTop: any;
   selectedBottom: any;
   selectedAccessory: any;
+  user: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
-  const handlePost = () => {};
+  const router = useRouter();
+
+  const handlePost = () => {
+    if (props.user) {
+      console.log("I will post your outfit");
+    } else {
+      router.push("/login");
+    }
+  };
+
   return (
     <div className="bg-egg p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
       <div className="p-4 pl-14 font-serif font-bold text-3xl text-gray-900">
