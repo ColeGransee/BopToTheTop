@@ -16,28 +16,28 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const selectedAccessory = props.selectedAccessory;
 
   const handlePost = () => {
-    if (props.userID) {
-      fetch("http://127.0.0.1:8000/submit/", {
-        headers: {
-          Accept: 'application.json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({
-          userID: userID,
-          top: selectedTop,
-          bottom: selectedBottom,
-          accessory: selectedAccessory,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          });
-        }
-     else {
-      router.push("/login");
-    }
+    // if (props.userID) {
+    //   fetch("http://127.0.0.1:8000/submit/", {
+    //     headers: {
+    //       Accept: 'application.json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       userID: userID,
+    //       top: selectedTop,
+    //       bottom: selectedBottom,
+    //       accessory: selectedAccessory,
+    //     }),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       });
+    //     }
+    //  else {
+    //   router.push("/login");
+    // }
   };
 
   return (
