@@ -18,17 +18,16 @@ export const Leaderboard = (props: any) => {
       // @ts-ignore
       setUsername(localStorage.getItem("username"));
     }
+    // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
+  }, []);
 
+  useEffect(() => {
     fetch("http://127.0.0.1:8000/view/", {
       method: "GET",
-      headers: {
-        Accept: "application.json",
-        "Content-Type": "application/json",
-      },
     })
       .then((response) => response.json())
       .then((data) => {
-        setData(data);
+        console.log(data);
       });
     // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
   }, []);
