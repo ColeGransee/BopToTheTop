@@ -32,7 +32,6 @@ def user_add(request):
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
-    # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user login verification
 @csrf_exempt
@@ -55,16 +54,11 @@ def user_login(request):
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
-    # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user's outfit submission
 @csrf_exempt
 @api_view(['POST'])
 def outfit_add(request):
-    # - get username/user_id, a json object contaning product details.
-    # - INSERT INTO tablename (user_id, user_submission, upvotes)
-    #   VALUES ('user_id', 'array of sub details', 0, DTM);
-
     if request.method == 'POST':
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
@@ -75,7 +69,6 @@ def outfit_add(request):
         cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
         submission_id = cursor.fetchone()
 
-    #return Response(submission_id, status=status.HTTP_201_CREATED)
     return_response = JsonResponse([submission_id], safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
@@ -85,15 +78,10 @@ def outfit_add(request):
 @csrf_exempt
 @api_view(['GET'])
 def outfit_view(request):
-    # - SELECT column1, column2
-    #   FROM tablename;
-    # - then send all the data in JSON to frontend
     with connection.cursor() as cursor:
         cursor.execute("SELECT username, user_submission, upvotes FROM user_submissions")
         outfits = cursor.fetchall()
-    # for each in outfits:
-    #     print(each)
-    #return Response(outfits, status=status.HTTP_201_CREATED)
+
     return_response = JsonResponse(outfits, safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
