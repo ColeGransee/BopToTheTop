@@ -75,7 +75,11 @@ def outfit_add(request):
         cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
         submission_id = cursor.fetchone()
 
-    return Response(submission_id, status=status.HTTP_201_CREATED)
+    #return Response(submission_id, status=status.HTTP_201_CREATED)
+    return_response = JsonResponse([submission_id], safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
 
 # returns all outfit submissions
 @csrf_exempt
@@ -89,9 +93,11 @@ def outfit_view(request):
         outfits = cursor.fetchall()
     # for each in outfits:
     #     print(each)
-    return Response(outfits, status=status.HTTP_201_CREATED)
-
-
+    #return Response(outfits, status=status.HTTP_201_CREATED)
+    return_response = JsonResponse(outfits, safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
 
 # helper method that runs on startup, as defined in apps.py. Gets category for Women's department.
 def get_category_ids():
