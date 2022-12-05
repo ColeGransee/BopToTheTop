@@ -24,10 +24,14 @@ def user_add(request):
         password = str(json.loads(request.body)['password'])
 
         # insert the credentials in the database
-        with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
-            user_id = cursor.fetchone()
-    ret_id = str(user_id[0])
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
+                user_id = cursor.fetchone()
+            ret_id = str(user_id[0])
+        except Exception:
+            ret_id = "-1"
+    
     return_response = JsonResponse([ret_id], safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
