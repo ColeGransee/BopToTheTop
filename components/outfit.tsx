@@ -17,13 +17,14 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
 
   const handlePost = () => {
     if (props.userID) {
-      fetch("http://127.0.0.1:8000/submit/", {
+      fetch("http://127.0.0.1:8000/addoutfit/", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
           'accept': 'application/json',
         },
         body: JSON.stringify({
+
           top: selectedTop,
           bottom: selectedBottom,
           accessory: selectedAccessory,

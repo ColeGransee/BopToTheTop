@@ -59,15 +59,6 @@ export const Tops = (props: any) => {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          {/* <Card
-            title={datas[0]?.Name.toString()}
-            imageUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" + datas[0]?.Image}
-            category={{ name: datas[0]?.Price.toString(), href: "#" }}
-            description={datas[0]?.Brand.toString()}
-            onSelect={props.onSelect}
-            // https://m.media-amazon.com/images/G/01/Shopbop/p
-          /> */}
-
           {datas.slice(0, 10).map((user) => (
             <Card
               key={user.Url}

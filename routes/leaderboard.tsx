@@ -22,12 +22,13 @@ export const Leaderboard = (props: any) => {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/view/", {
+    fetch("http://127.0.0.1:8000/viewoutfits/", {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setData(data);
       });
     // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
   }, []);
@@ -37,38 +38,15 @@ export const Leaderboard = (props: any) => {
       <Head />
       <Header username={username} />
       <div className="bg-offwhite grid md:grid-cols-2 lg:grid-cols-3 p-10">
-        <OutfitCard
-          title="Allison's fit"
-          accessoryUrl="./Gucci.jpg"
-          topUrl="./sweater.jpg"
-          bottomUrl="./agolde.jpg"
-          category={{ name: "$239.00", href: "#" }}
-          description="High Rise Wide Leg Jeans"
-        />
-        <OutfitCard
-          title="Allison's fit"
-          accessoryUrl="./Gucci.jpg"
-          topUrl="./sweater.jpg"
-          bottomUrl="./agolde.jpg"
-          category={{ name: "$239.00", href: "#" }}
-          description="High Rise Wide Leg Jeans"
-        />
-        <OutfitCard
-          title="Allison's fit"
-          accessoryUrl="./Gucci.jpg"
-          topUrl="./sweater.jpg"
-          bottomUrl="./agolde.jpg"
-          category={{ name: "$239.00", href: "#" }}
-          description="High Rise Wide Leg Jeans"
-        />
-        <OutfitCard
-          title="Allison's fit"
-          accessoryUrl="./Gucci.jpg"
-          topUrl="./sweater.jpg"
-          bottomUrl="./agolde.jpg"
-          category={{ name: "$239.00", href: "#" }}
-          description="High Rise Wide Leg Jeans"
-        />
+        {datas.map((user) => (
+          <OutfitCard
+            key = {user[0]}
+            title={user[0]}
+            accessoryUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" +  user?.Accessory}
+            topUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Top}
+            bottomUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Bottom}
+          />
+        ))}
       </div>
       <Footer />
     </div>
