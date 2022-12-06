@@ -24,15 +24,18 @@ def user_add(request):
         password = str(json.loads(request.body)['password'])
 
         # insert the credentials in the database
-        with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
-            user_id = cursor.fetchone()
-    ret_id = str(user_id[0])
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
+                user_id = cursor.fetchone()
+            ret_id = str(user_id[0])
+        except Exception:
+            ret_id = "-1"
+    
     return_response = JsonResponse([ret_id], safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
-    # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 # handles user login verification
 @csrf_exempt
@@ -55,7 +58,6 @@ def user_login(request):
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
-    # return Response(json.loads(ret_id), status=status.HTTP_201_CREATED)
 
 @csrf_exempt
 @api_view(['POST'])
@@ -64,10 +66,6 @@ def user_login(request):
 #   user_submission - json array of top, bottom and accessory
 # returns: submission_id
 def outfit_add(request):
-    # - get username/user_id, a json object contaning product details.
-    # - INSERT INTO tablename (user_id, user_submission, upvotes)
-    #   VALUES ('user_id', 'array of sub details', 0, DTM);
-
     if request.method == 'POST':
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
@@ -79,22 +77,24 @@ def outfit_add(request):
         cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
         submission_id = cursor.fetchone()
 
-    return Response(submission_id, status=status.HTTP_201_CREATED)
+    return_response = JsonResponse([submission_id], safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
 
 # returns all outfit submissions
 @csrf_exempt
 @api_view(['GET'])
 #returns: all submissions as an array
 def outfit_view(request):
-    # - SELECT column1, column2
-    #   FROM tablename;
-    # - then send all the data in JSON to frontend
     with connection.cursor() as cursor:
         cursor.execute("SELECT username, user_submission, upvotes FROM user_submissions")
         outfits = cursor.fetchall()
-    return Response(outfits, status=status.HTTP_201_CREATED)
 
-
+    return_response = JsonResponse(outfits, safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
 
 # helper method that runs on startup, as defined in apps.py. Gets category for Women's department.
 def get_category_ids():
