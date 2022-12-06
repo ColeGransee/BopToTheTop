@@ -28,7 +28,7 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         },
         body: JSON.stringify({
           username: username,
-          user_submission: [selectedTop, selectedBottom, selectedAccessory],
+          user_submission: [selectedTop, selectedBottom, selectedAccessory]
         }),
       })
         .then((response) => response.json())
