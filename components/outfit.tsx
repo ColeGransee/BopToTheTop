@@ -24,7 +24,7 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
           'accept': 'application/json',
         },
         body: JSON.stringify({
-
+          userID: userID,
           top: selectedTop,
           bottom: selectedBottom,
           accessory: selectedAccessory,
