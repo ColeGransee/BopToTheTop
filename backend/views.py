@@ -73,9 +73,12 @@ def outfit_add(request):
         # upvotes = json.loads(request.body)['upvotes']
         upvotes = 0
 
-    with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
-        submission_id = cursor.fetchone()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
+            submission_id = cursor.fetchone()
+    except Exception:
+        submission_id = "-1"
 
     return_response = JsonResponse([submission_id], safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
