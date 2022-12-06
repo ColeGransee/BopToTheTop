@@ -61,11 +61,11 @@ def user_login(request):
 
 @csrf_exempt
 @api_view(['POST'])
-#@params: 
-#   username - username for this submission
-#   user_submission - json array of top, bottom and accessory
-# returns: submission_id
 def outfit_add(request):
+    # @params: 
+    #   username - username for this submission
+    #   user_submission - json array of top, bottom and accessory
+    # returns: submission_id
     if request.method == 'POST':
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
