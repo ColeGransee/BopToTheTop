@@ -40,7 +40,7 @@ export const IndexPage = () => {
         selectedTop={selectedTop}
         selectedBottom={selectedBottom}
         selectedAccessory={selectedAccessory}
-        userID={userID}
+        username={username}
       />
       <Footer />
     </div>

@@ -5,25 +5,25 @@ interface IOutfitProps {
   selectedTop: any;
   selectedBottom: any;
   selectedAccessory: any;
-  userID: any;
+  username: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const router = useRouter();
-  const userID = props.userID;
+  const username = props.username;
   const selectedTop = props.selectedTop;
   const selectedBottom = props.selectedBottom;
   const selectedAccessory = props.selectedAccessory;
 
   const handlePost = () => {
-    if (props.userID) {
-      fetch("http://127.0.0.1:8000/addoutfit/", {
+    if (props.username) {
+      fetch("http://127.0.0.1:8000/submit/", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
           'accept': 'application/json',
         },
         body: JSON.stringify({
-          username: userID,
+          username: username,
           top: selectedTop,
           bottom: selectedBottom,
           accessory: selectedAccessory,
