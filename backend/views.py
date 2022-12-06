@@ -85,8 +85,8 @@ def outfit_add(request):
 # returns all outfit submissions
 @csrf_exempt
 @api_view(['GET'])
-#returns: all submissions as an array
 def outfit_view(request):
+    # returns: all submissions as an array
     with connection.cursor() as cursor:
         cursor.execute("SELECT username, user_submission, upvotes FROM user_submissions")
         outfits = cursor.fetchall()
