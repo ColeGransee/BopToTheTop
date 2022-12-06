@@ -13,19 +13,15 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const selectedTop = props.selectedTop;
   const selectedBottom = props.selectedBottom;
   const selectedAccessory = props.selectedAccessory;
-  let count = 0;
-  let user_submission = [
-    [selectedTop, selectedBottom, selectedAccessory],
-  ];
 
   const handlePost = () => {
     if (props.username) {
       fetch("http://127.0.0.1:8000/submit/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   accept: "application/json",
+        // },
         body: JSON.stringify({
           username: username,
           user_submission: [selectedTop, selectedBottom, selectedAccessory]
@@ -35,9 +31,9 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         .then((data) => {
           console.log(data);
         });
-    } else {
-      router.push("/login");
-    }
+     } else {
+       router.push("/login");
+     }
   };
 
   return (

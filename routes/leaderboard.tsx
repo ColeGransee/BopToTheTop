@@ -38,15 +38,15 @@ export const Leaderboard = (props: any) => {
       <Head />
       <Header username={username} />
       <div className="bg-offwhite grid md:grid-cols-2 lg:grid-cols-3 p-10">
-        {/*{datas.map((user) => (*/}
-        {/*  <OutfitCard*/}
-        {/*    key = {user[0]}*/}
-        {/*    title={user[0]}*/}
-        {/*    accessoryUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" +  user?.Accessory}*/}
-        {/*    topUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Top}*/}
-        {/*    bottomUrl={"https://m.media-amazon.com/images/G/01/Shopbop/p" + user?.Bottom}*/}
-        {/*  />*/}
-        {/*))}*/}
+        {datas.map((user) => (
+          <OutfitCard
+            key = {user[0]}
+            title={user[0]}
+            accessoryUrl = {user?.Accessory}
+            topUrl={user?.Top}
+            bottomUrl={user?.Bottom}
+          />
+        ))}
       </div>
       <Footer />
     </div>
