@@ -9,7 +9,6 @@ interface IOutfitProps {
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const router = useRouter();
-
   const userID = props.userID;
   const selectedTop = props.selectedTop;
   const selectedBottom = props.selectedBottom;
@@ -24,7 +23,7 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
           'accept': 'application/json',
         },
         body: JSON.stringify({
-          userID: userID,
+          username: userID,
           top: selectedTop,
           bottom: selectedBottom,
           accessory: selectedAccessory,
