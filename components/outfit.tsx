@@ -18,10 +18,6 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
     if (props.username) {
       fetch("http://127.0.0.1:8000/submit/", {
         method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   accept: "application/json",
-        // },
         body: JSON.stringify({
           username: username,
           user_submission: [selectedTop, selectedBottom, selectedAccessory]
