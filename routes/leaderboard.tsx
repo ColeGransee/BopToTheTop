@@ -27,7 +27,6 @@ export const Leaderboard = (props: any) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setData(data);
       });
     // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
@@ -45,6 +44,8 @@ export const Leaderboard = (props: any) => {
             accessoryUrl={user[3]}
             topUrl={user[1]}
             bottomUrl={user[2]}
+            upvotes={user[4]}
+            enableVoting={true}
           />
         ))}
       </div>

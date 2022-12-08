@@ -1,12 +1,23 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export const Header = (props: any) => {
   const username = props.username;
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (!username) {
+      router.push("/login");
+    } else {
+      router.push("/closet");
+    }
+  };
+
   return (
     <div className="bg-white border-b-2 border-double border-gray-600">
-      <div className="bg-gray-100 flex justify-end ">
-        {!!props.username ? (
+      <div className="bg-gray-100 flex justify-end mb-2">
+        {!!username ? (
           <div className="px-4 py-2 font-gray-500 text-serif text-sm">
             {" "}
             hello, {props.username}
@@ -35,9 +46,12 @@ export const Header = (props: any) => {
             <Link href="/leaderboard">
               <a className="text-gray-600 hover:text-gray-500">leaderboard</a>
             </Link>
-            <Link href="/share">
-              <a className="text-gray-600 hover:text-gray-500">share</a>
-            </Link>
+            <button
+              className="text-gray-600 hover:text-gray-500"
+              onClick={handleClick}
+            >
+              closet
+            </button>
           </div>
         </div>
       </main>

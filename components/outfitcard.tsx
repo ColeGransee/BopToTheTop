@@ -32,14 +32,19 @@ export const OutfitCard = (props: any) => {
                 <p className="text-xl font-semibold text-gray-900">
                   {props.title}
                 </p>
+                <p className="text-md text-gray-700">{props.upvotes} votes</p>
               </div>
             </a>
-            <button
-              className="px-3 py-2 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
-              onClick={handleUpvote}
-            >
-              <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white" />
-            </button>
+            {!!props.enableVoting ? (
+              <button
+                className="px-3 py-2 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
+                onClick={handleUpvote}
+              >
+                <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white" />
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

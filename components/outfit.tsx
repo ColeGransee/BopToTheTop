@@ -91,8 +91,8 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         )}
       </div>
       <div className="flex justify-end">
-        {!!props.selectedAccessory ||
-        !!props.selectedTop ||
+        {!!props.selectedAccessory &&
+        !!props.selectedTop &&
         !!props.selectedBottom ? (
           <button
             className="px-4 py-3 mx-3 my-4 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
