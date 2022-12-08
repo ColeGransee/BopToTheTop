@@ -80,7 +80,8 @@ def outfit_add(request):
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
             submission_id = cursor.fetchone()
-    except Exception:
+    except Exception as e:
+        print(e)
         submission_id = "-1"
 
     return_response = JsonResponse([submission_id], safe=False)
@@ -94,7 +95,7 @@ def outfit_add(request):
 def outfit_view(request):
     # returns: all submissions as an array
     with connection.cursor() as cursor:
-        cursor.execute("SELECT username, user_submission, upvotes FROM user_submissions")
+        cursor.execute("SELECT username, top, bottom, accessory, upvotes FROM user_submissions")
         outfits = cursor.fetchall()
 
     return_response = JsonResponse(outfits, safe=False)
