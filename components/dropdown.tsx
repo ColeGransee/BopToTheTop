@@ -1,18 +1,18 @@
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { useRouter } from 'next/router'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useRouter } from "next/router";
 
 export const Dropdown = () => {
   function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(" ");
   }
   const router = useRouter();
 
   const handleSignOut = () => {
     localStorage.clear();
     router.push("/login");
-  }
+  };
 
   return (
     <Menu as="div" className="px-4 py-2 relative inline-block text-left">
@@ -39,8 +39,8 @@ export const Dropdown = () => {
                 <a
                   href="/closet"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
                   )}
                 >
                   Account settings
@@ -52,8 +52,8 @@ export const Dropdown = () => {
                 <a
                   href="/"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
                   )}
                 >
                   Home
@@ -66,10 +66,10 @@ export const Dropdown = () => {
                   <button
                     type="submit"
                     className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block w-full px-4 py-2 text-left text-sm"
                     )}
-                    onClick = {handleSignOut}
+                    onClick={handleSignOut}
                   >
                     Sign out
                   </button>
@@ -80,5 +80,5 @@ export const Dropdown = () => {
         </Menu.Items>
       </Transition>
     </Menu>
-  )
-}
+  );
+};

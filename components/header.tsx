@@ -19,7 +19,7 @@ export const Header = (props: any) => {
     <div className="bg-white border-b-2 border-double border-gray-600">
       <div className="bg-gray-100 flex justify-end mb-2">
         {!!username ? (
-          <Dropdown/>
+          <Dropdown />
         ) : (
           <Link href="/login">
             <div className="inline-flex m-2 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-100">

@@ -10,6 +10,7 @@ export const Closet = () => {
   const [userID, setUserID] = useState<string>();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const [email, setEmail] = useState<string>();
 
   const [filteredData, setFilteredData] = useState<any[]>([]);
 
@@ -42,6 +43,8 @@ export const Closet = () => {
       // @ts-ignore
       setUsername(localStorage.getItem("username"));
       // @ts-ignore
+      setEmail(localStorage.getItem("email"));
+      // @ts-ignore
       setPassword(localStorage.getItem("password"));
     }
     // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
@@ -72,15 +75,16 @@ export const Closet = () => {
         <div className="flex flex-col p-2 px-6 font-serif text-lg md:text-xl text-gray-900">
           <div className="p-2 my-2 flex flex-wrap">
             <div className="font-bold px-2"> Email:</div>
-            <div className=""> {username}</div>
+            <div className=""> {email}</div>
           </div>
           <div className="p-2 my-2 flex flex-wrap">
             <div className="font-bold px-2"> Username:</div>
             <div className=""> {username}</div>
-          </div><div className="p-2 my-2 flex flex-wrap">
-          <div className="font-bold px-2"> Password:</div>
-          <div className=""> {password}</div>
-        </div>
+          </div>
+          <div className="p-2 my-2 flex flex-wrap">
+            <div className="font-bold px-2"> Password:</div>
+            <div className=""> {password}</div>
+          </div>
         </div>
       </div>
       <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">

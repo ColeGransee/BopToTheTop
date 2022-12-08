@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
@@ -14,17 +15,18 @@ export const Login = () => {
     fetch("http://127.0.0.1:8000/loginusers/", {
       method: "POST",
       body: JSON.stringify({
-        username: email,
+        username: username,
         password: password,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("userID", data);
-        localStorage.setItem("username", email);
-        localStorage.setItem("password", password);
         if (data != -1) {
           router.push("/");
+          localStorage.setItem("userID", data);
+          localStorage.setItem("username", username);
+          localStorage.setItem("email", email);
+          localStorage.setItem("password", password);
         } else {
           router.push("/createuser");
         }
@@ -60,6 +62,26 @@ export const Login = () => {
                     name="email"
                     type="email"
                     autoComplete="email"
+                    required
+                    className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Username
+                </label>
+                <div className="mt-1">
+                  <input
+                    onChange={(e) => setUsername(e.target.value)}
+                    id="username"
+                    name="username"
+                    type="username"
+                    autoComplete="username"
                     required
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm"
                   />
