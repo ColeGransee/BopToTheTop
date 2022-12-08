@@ -22,6 +22,7 @@ export const Login = () => {
       .then((data) => {
         localStorage.setItem("userID", data);
         localStorage.setItem("username", email);
+        localStorage.setItem("password", password);
         if (data != -1) {
           router.push("/");
         } else {

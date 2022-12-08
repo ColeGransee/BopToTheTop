@@ -10,6 +10,7 @@
     "format": "prettier \"**/*.{ts,tsx}\" --write"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "heroicons": "^2.0.13",
     "next": "12.1.6",
