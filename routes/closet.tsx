@@ -1,7 +1,7 @@
 import { Header } from "../components/header";
 import { Head } from "../components/head";
 import { Footer } from "../components/footer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { OutfitCard } from "../components/outfitcard";
@@ -9,8 +9,9 @@ import { OutfitCard } from "../components/outfitcard";
 export const Closet = () => {
   const [userID, setUserID] = useState<string>();
   const [username, setUsername] = useState<string>();
-  const [datas, setData] = useState<any[]>([]);
+  const [filteredData, setFilteredData] = useState<any[]>([]);
 
+  let result = [];
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -32,20 +33,6 @@ export const Closet = () => {
   };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/view/", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        data.filter(function (user: any) {
-          return user[0] === username;
-        });
-        setData(data);
-      });
-    // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
-  }, []);
-
-  useEffect(() => {
     // Perform localStorage action
     if (localStorage.getItem("userID") && localStorage.getItem("username")) {
       // @ts-ignore
@@ -56,6 +43,20 @@ export const Closet = () => {
     // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
   }, []);
 
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/view/", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        result = data.filter((user: any) => {
+          return user[0] === username;
+        });
+        setFilteredData(result);
+      });
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, [filteredData]);
+
   return (
     <div>
       <Head />
@@ -65,9 +66,9 @@ export const Closet = () => {
           Your Profile
         </div>
         <div className="flex flex-col p-4 font-serif font-bold text-xl text-gray-700">
-          <div className="">Username</div>
-          <div className="">Password</div>
-          <div className="">Email</div>
+          <div className="">Username: </div>
+          <div className="">Password: </div>
+          <div className="">Email: </div>
         </div>
       </div>
       <div className="bg-pink-100 p-4 md:px-8 pb-8 border-b-2 border-double border-gray-600">
@@ -91,7 +92,7 @@ export const Closet = () => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {datas.map((user) => (
+            {filteredData.map((user) => (
               <OutfitCard
                 key={user[2]}
                 title={user[0]}
