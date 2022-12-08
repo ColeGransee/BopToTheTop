@@ -69,13 +69,16 @@ def outfit_add(request):
     if request.method == 'POST':
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
-        user_submission = str(json.loads(request.body)['user_submission'])
+        #user_submission = str(json.loads(request.body)['user_submission'])
+        top = str(json.loads(request.body)['top'])
+        bottom = str(json.loads(request.body)['bottom'])
+        accessory = str(json.loads(request.body)['accessory'])
         # upvotes = json.loads(request.body)['upvotes']
         upvotes = 0
 
     try:
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO user_submissions(username, user_submission, upvotes) VALUES ('{username}', '{user_submission}', '{upvotes}\') RETURNING submission_id;".format(username=username, user_submission=user_submission, upvotes=upvotes))
+            cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
             submission_id = cursor.fetchone()
     except Exception:
         submission_id = "-1"
