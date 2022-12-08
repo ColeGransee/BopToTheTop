@@ -23,7 +23,6 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         body: JSON.stringify({
           username: username,
           user_submission: user_submission,
-          upvotes: 0,
         }),
       })
         .then((response) => response.json())
