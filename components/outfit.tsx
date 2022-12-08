@@ -5,14 +5,31 @@ interface IOutfitProps {
   selectedTop: any;
   selectedBottom: any;
   selectedAccessory: any;
-  user: any;
+  username: any;
 }
 export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const router = useRouter();
+  const username = props.username;
+  const selectedTop = props.selectedTop;
+  const selectedBottom = props.selectedBottom;
+  const selectedAccessory = props.selectedAccessory;
+  const user_submission = [selectedTop, selectedBottom, selectedAccessory];
 
   const handlePost = () => {
-    if (props.user) {
-      console.log("I will post your outfit");
+    if (props.username) {
+      fetch("http://127.0.0.1:8000/submit/", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          top: selectedTop,
+          bottom: selectedBottom,
+          accessory: selectedAccessory,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
     } else {
       router.push("/login");
     }
@@ -74,8 +91,8 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         )}
       </div>
       <div className="flex justify-end">
-        {!!props.selectedAccessory ||
-        !!props.selectedTop ||
+        {!!props.selectedAccessory &&
+        !!props.selectedTop &&
         !!props.selectedBottom ? (
           <button
             className="px-4 py-3 mx-3 my-4 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
