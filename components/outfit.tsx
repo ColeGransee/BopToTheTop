@@ -15,6 +15,8 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const selectedAccessory = props.selectedAccessory;
   const user_submission = [selectedTop, selectedBottom, selectedAccessory];
 
+  console.log(selectedTop);
+
 
   const handlePost = () => {
     if (props.username) {
@@ -22,7 +24,9 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         method: "POST",
         body: JSON.stringify({
           username: username,
-          user_submission: user_submission,
+          top: selectedTop,
+          bottom: selectedBottom,
+          accessory: selectedAccessory,
         }),
       })
         .then((response) => response.json())
