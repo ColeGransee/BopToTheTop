@@ -15,9 +15,6 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
   const selectedAccessory = props.selectedAccessory;
   const user_submission = [selectedTop, selectedBottom, selectedAccessory];
 
-  console.log(selectedTop);
-
-
   const handlePost = () => {
     if (props.username) {
       fetch("http://127.0.0.1:8000/submit/", {
@@ -33,9 +30,9 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
         .then((data) => {
           console.log(data);
         });
-     } else {
-       router.push("/login");
-     }
+    } else {
+      router.push("/login");
+    }
   };
 
   return (
