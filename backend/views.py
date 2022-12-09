@@ -64,7 +64,9 @@ def user_login(request):
 def outfit_add(request):
     # @params: 
     #   username - username for this submission
-    #   user_submission - json array of top, bottom and accessory
+    #   top - top submission
+    #   bottom - bottom submission
+    #   accessory - accessory submssion
     # returns: submission_id
     if request.method == 'POST':
         # retrieve username and password
@@ -95,10 +97,29 @@ def outfit_add(request):
 def outfit_view(request):
     # returns: all submissions as an array
     with connection.cursor() as cursor:
-        cursor.execute("SELECT username, top, bottom, accessory, upvotes FROM user_submissions")
+        cursor.execute("SELECT username, top, bottom, accessory, upvotes FROM user_submissions ORDER BY upvotes DESC")
         outfits = cursor.fetchall()
 
     return_response = JsonResponse(outfits, safe=False)
+    return_response['Cross-Origin-Opener-Policy'] ='*'
+    return_response['Access-Control-Allow-Origin'] ='*'
+    return return_response
+
+@csrf_exempt
+@api_view(['POST'])
+def upvote(request):
+    username = json.loads(request.body)['username']
+    n = json.loads(request.body)['n']
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=username))
+            votes = cursor.fetchone()
+            cursor.execute("UPDATE user_accounts SET votes_remaining = votes_remaining - 1 WHERE username='{username}\'".format(username))
+    except Exception as e:
+        print(e)
+        votes = -1
+
+    return_response = JsonResponse(votes, safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
