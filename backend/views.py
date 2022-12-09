@@ -83,8 +83,13 @@ def outfit_add(request):
 
     try:
         with connection.cursor() as cursor:
+            cursor.execute("SELECT user_submitted FROM user_accounts WHERE username = '{username}\'".format(username=username))
+            submitted = cursor.fetchone()[0]
+            if submitted == 1:
+                return HttpResponse("This user has already submitted an outfit for this prompt!")
             cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
             submission_id = cursor.fetchone()
+            cursor.execute("UPDATE user_accounts SET user_submitted = 1 WHERE username = '{username}\'".format(username=username))
     except Exception as e:
         print(e)
         submission_id = "-1"
@@ -114,6 +119,8 @@ def upvote(request):
     logged_in_user = json.loads(request.body)['loggedin_user']
     n = json.loads(request.body)['n']
     upvoted_user = json.loads(request.body)['upvoted_user']
+    if logged_in_user == upvoted_user:
+        return HttpResponse("User cannot vote for themselves.")
     try:
         with connection.cursor() as cursor:
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
