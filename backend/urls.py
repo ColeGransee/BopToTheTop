@@ -23,5 +23,6 @@ urlpatterns = [
     path('createusers/', views.user_add),
     path('loginusers/', views.user_login),
     path('submit/', views.outfit_add),
-    path('view/', views.outfit_view)
+    path('view/', views.outfit_view),
+    path('upvote/', views.upvote)
 ]
