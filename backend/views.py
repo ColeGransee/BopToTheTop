@@ -22,14 +22,17 @@ def user_add(request):
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
         password = str(json.loads(request.body)['password'])
+        votes_remaining = json.loads(request.body)['votes_remaining']
+        user_submitted = json.loads(request.body)['user_submitted']
 
         # insert the credentials in the database
         try:
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO user_accounts(username, password) VALUES ('{username}', '{password}\') RETURNING user_id;".format(username=username, password=password))
+                cursor.execute("INSERT INTO user_accounts(username, password, votes_remaining, user_submitted) VALUES ('{username}', '{password}', '{votes_remaining}', '{user_submitted}\') RETURNING user_id;".format(username=username, password=password, votes_remaining=votes_remaining, user_submitted=user_submitted))
                 user_id = cursor.fetchone()
             ret_id = str(user_id[0])
-        except Exception:
+        except Exception as e:
+            print(e)
             ret_id = "-1"
     
     return_response = JsonResponse([ret_id], safe=False)
