@@ -1,10 +1,5 @@
-.gitignore
 *.pyc
 node_modules
 db.sqlite3
-backend/__pycache__/__init__.cpython-39.pyc
-backend/__pycache__/serializers.cpython-39.pyc
-backend/__pycache__/settings.cpython-39.pyc
-backend/__pycache__/urls.cpython-39.pyc
-backend/__pycache__/views.cpython-39.pyc
-backend/__pycache__/wsgi.cpython-39.pyc
+venv
+.gitignore
