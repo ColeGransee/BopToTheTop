@@ -121,12 +121,12 @@ def upvote(request):
     upvoted_user = json.loads(request.body)['upvoted_user']
     if logged_in_user == upvoted_user:
         votes = "-1"
+    print("before try")
     try:
         with connection.cursor() as cursor:
             cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\' RETURNING votes_remaining".format(logged_in_user=logged_in_user))
             votes_remaining = cursor.fetchone()[0]
             print(votes_remaining)
-            print(typeof(votes_remaining))
             if (votes_remaining <= 0):
                 print("no votes remaining")
                 votes = "-1"
