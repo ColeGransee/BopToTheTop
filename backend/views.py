@@ -87,10 +87,6 @@ def outfit_add(request):
             submitted = cursor.fetchone()[0]
             if submitted == 1:
                 return HttpResponse("This user has already submitted an outfit for this prompt!")
-            cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{username}\'".format(username=username))
-            votes = cursor.fetchone()[0]
-            if votes <= 0:
-                return HttpResponse("This user can't vote on anymore outfits")
             cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
             submission_id = cursor.fetchone()
             cursor.execute("UPDATE user_accounts SET user_submitted = 1 WHERE username = '{username}\'".format(username=username))
@@ -127,6 +123,10 @@ def upvote(request):
         return HttpResponse("User cannot vote for themselves.")
     try:
         with connection.cursor() as cursor:
+            cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\'".format(logged_in_user=logged_in_user))
+            votes = cursor.fetchone()[0]
+            if votes <= 0:
+                return HttpResponse("This user can't vote on anymore outfits")
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
             votes = cursor.fetchone()
             cursor.execute("UPDATE user_accounts SET votes_remaining = votes_remaining - 1 WHERE username='{username}\'".format(username=logged_in_user))
