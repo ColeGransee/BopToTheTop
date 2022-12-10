@@ -127,6 +127,7 @@ def upvote(request):
             votes = cursor.fetchone()[0]
             print(votes)
             if votes <= 0:
+                print("no votes remaining")
                 return -1
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
             votes = cursor.fetchone()
