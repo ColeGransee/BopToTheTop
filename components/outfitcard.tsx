@@ -1,7 +1,41 @@
 import { ArrowUpIcon } from "@heroicons/react/20/solid";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export const OutfitCard = (props: any) => {
-  const handleUpvote = () => {};
+  const router = useRouter();
+
+  const [username, setUsername] = useState<string>();
+  const [upvotes, setUpvotes] = useState<string>(props.upvotes);
+
+  useEffect(() => {
+    // Perform localStorage action
+    if (localStorage.getItem("userID") && localStorage.getItem("username")) {
+      // @ts-ignore
+      setUsername(localStorage.getItem("username"));
+    }
+    // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
+  }, []);
+
+  const handleUpvote = () => {
+    if (props.title) {
+      fetch("http://127.0.0.1:8000/upvote/", {
+        method: "POST",
+        body: JSON.stringify({
+          loggedin_user: username,
+          n: 1,
+          upvoted_user: props.title,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setUpvotes(data);
+          console.log(data);
+        });
+    } else {
+      router.push("/login");
+    }
+  };
   return (
     <div className="flex justify-center mb-4">
       <div
@@ -32,18 +66,26 @@ export const OutfitCard = (props: any) => {
                 <p className="text-xl font-semibold text-gray-900">
                   {props.title}
                 </p>
-                <p className="text-md text-gray-700">{props.upvotes} votes</p>
+                <p className="text-md text-gray-700">{upvotes} votes</p>
               </div>
             </a>
             {!!props.enableVoting ? (
-              <button
-                className="px-3 py-2 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
-                onClick={handleUpvote}
-              >
-                <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white" />
-              </button>
+              <div>
+                {props.title == username ? (
+                  <button className="px-3 py-2 bg-orange-400 rounded font-serif text-gray-200">
+                    <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white" />
+                  </button>
+                ) : (
+                  <button
+                    className="px-3 py-2 bg-orange-400 hover:bg-orange-500 rounded font-serif text-gray-200"
+                    onClick={handleUpvote}
+                  >
+                    <ArrowUpIcon className="flex-shrink-0 h-5 w-5 text-white" />
+                  </button>
+                )}
+              </div>
             ) : (
-              <></>
+              <div />
             )}
           </div>
         </div>
