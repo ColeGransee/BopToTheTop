@@ -126,7 +126,7 @@ def upvote(request):
             cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\' RETURNING votes_remaining".format(logged_in_user=logged_in_user))
             votes_remaining = cursor.fetchone()[0]
             print(votes_remaining)
-            if votes_remaining <= 0:
+            if (votes_remaining <= 0):
                 print("no votes remaining")
                 return -1
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
