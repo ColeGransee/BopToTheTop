@@ -22,8 +22,8 @@ def user_add(request):
         # retrieve username and password
         username = str(json.loads(request.body)['username'])
         password = str(json.loads(request.body)['password'])
-        votes_remaining = json.loads(request.body)['votes_remaining']
-        user_submitted = json.loads(request.body)['user_submitted']
+        votes_remaining = 3
+        user_submitted = 0
 
         # insert the credentials in the database
         try:
