@@ -125,6 +125,7 @@ def upvote(request):
         with connection.cursor() as cursor:
             cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\'".format(logged_in_user=logged_in_user))
             votes = cursor.fetchone()[0]
+            print(votes)
             if votes <= 0:
                 return HttpResponse("This user can't vote on anymore outfits")
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
