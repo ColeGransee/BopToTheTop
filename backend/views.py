@@ -86,10 +86,11 @@ def outfit_add(request):
             cursor.execute("SELECT user_submitted FROM user_accounts WHERE username = '{username}\'".format(username=username))
             submitted = cursor.fetchone()[0]
             if submitted == 1:
-                return HttpResponse("This user has already submitted an outfit for this prompt!")
-            cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
-            submission_id = cursor.fetchone()
-            cursor.execute("UPDATE user_accounts SET user_submitted = 1 WHERE username = '{username}\'".format(username=username))
+                submission_id = "-1"
+            else
+                cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
+                submission_id = cursor.fetchone()
+                cursor.execute("UPDATE user_accounts SET user_submitted = 1 WHERE username = '{username}\'".format(username=username))
     except Exception as e:
         print(e)
         submission_id = "-1"
