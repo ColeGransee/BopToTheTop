@@ -128,6 +128,7 @@ def upvote(request):
             votes_remaining = cursor.fetchone()[0]
             if (votes_remaining <= 0):
                 ret_id = "-1"
+            else ret_id = "1"
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username = '{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
             votes = cursor.fetchone()
             cursor.execute("UPDATE user_accounts SET votes_remaining = votes_remaining - 1 WHERE username = '{username}\'".format(username=logged_in_user))
