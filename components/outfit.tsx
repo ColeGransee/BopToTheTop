@@ -28,7 +28,12 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          router.push("/leaderboard");
+          if (data == -1) {
+            console.log("already posted outfit");
+          } else {
+            console.log(data);
+            router.push("/leaderboard");
+          }
         });
     } else {
       router.push("/login");
