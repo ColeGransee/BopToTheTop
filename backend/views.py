@@ -124,7 +124,7 @@ def upvote(request):
         ret_id = "-1"
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\' ".format(logged_in_user=logged_in_user))
+            cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\' RETURNING votes_remaining".format(logged_in_user=logged_in_user))
             votes_remaining = cursor.fetchone()[0]
             if (votes_remaining <= 0):
                 ret_id = "-1"
