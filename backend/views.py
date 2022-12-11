@@ -124,12 +124,12 @@ def upvote(request):
         ret_id = "-1"
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\' RETURNING votes_remaining".format(logged_in_user=logged_in_user))
+            cursor.execute("SELECT votes_remaining FROM user_accounts WHERE username = '{logged_in_user}\' RETURNING votes_remaining;".format(logged_in_user=logged_in_user))
             votes_remaining = cursor.fetchone()[0]
             print(typeof(votes_remaining))
             if (votes_remaining <= 0):
                 ret_id = "-1"
-            cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
+            cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes;".format(n=n, username=upvoted_user))
             votes = cursor.fetchone()
             cursor.execute("UPDATE user_accounts SET votes_remaining = votes_remaining - 1 WHERE username='{username}\'".format(username=logged_in_user))
     except Exception as e:
