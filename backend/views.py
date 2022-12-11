@@ -120,7 +120,7 @@ def upvote(request):
     n = json.loads(request.body)['n']
     upvoted_user = json.loads(request.body)['upvoted_user']
     if logged_in_user == upvoted_user:
-        votes = "-1"
+        ret_id = "-1"
     print("before try")
     try:
         with connection.cursor() as cursor:
@@ -129,7 +129,7 @@ def upvote(request):
             print(votes_remaining)
             if (votes_remaining <= 0):
                 print("no votes remaining")
-                votes = "-1"
+                ret_id = "-1"
             print("after if statement")
             cursor.execute("UPDATE user_submissions SET upvotes = upvotes + {n} WHERE username='{username}\' RETURNING upvotes".format(n=n, username=upvoted_user))
             votes = cursor.fetchone()
@@ -137,9 +137,9 @@ def upvote(request):
     except Exception as e:
         print("error message")
         print(e)
-        votes = "-1"
+        ret_id = "-1"
 
-    return_response = JsonResponse(votes, safe=False)
+    return_response = JsonResponse([ret_id], safe=False)
     return_response['Cross-Origin-Opener-Policy'] ='*'
     return_response['Access-Control-Allow-Origin'] ='*'
     return return_response
