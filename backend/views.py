@@ -87,7 +87,7 @@ def outfit_add(request):
             submitted = cursor.fetchone()[0]
             if submitted == 1:
                 submission_id = "-1"
-            else
+            else:
                 cursor.execute("INSERT INTO user_submissions(username, top, bottom, accessory, upvotes) VALUES ('{username}', '{top}', '{bottom}', '{accessory}', '{upvotes}\') RETURNING submission_id;".format(username=username, top=top, bottom=bottom, accessory=accessory, upvotes=upvotes))
                 submission_id = cursor.fetchone()
                 cursor.execute("UPDATE user_accounts SET user_submitted = 1 WHERE username = '{username}\'".format(username=username))
