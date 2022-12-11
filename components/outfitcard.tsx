@@ -32,8 +32,10 @@ export const OutfitCard = (props: any) => {
           if(data == -1) {
             console.log("out of upvotes");
           }
-          setUpvotes(data);
-          console.log(data);
+          else{
+            setUpvotes(data);
+            console.log(data);
+          }
         });
     } else {
       router.push("/login");

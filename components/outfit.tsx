@@ -28,6 +28,7 @@ export const Outfit = (props: PropsWithChildren<IOutfitProps>) => {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           router.push("/leaderboard");
         });
     } else {
