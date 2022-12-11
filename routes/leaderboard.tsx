@@ -39,7 +39,7 @@ export const Leaderboard = (props: any) => {
       <div className="bg-offwhite grid md:grid-cols-2 lg:grid-cols-3 p-10">
         {datas.map((user) => (
           <OutfitCard
-            key={user[2]}
+            key={user[0]}
             title={user[0]}
             accessoryUrl={user[3]}
             topUrl={user[1]}
