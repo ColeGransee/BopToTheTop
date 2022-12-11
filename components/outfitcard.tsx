@@ -29,10 +29,9 @@ export const OutfitCard = (props: any) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          if(data == -1) {
+          if (data == -1) {
             console.log("out of upvotes");
-          }
-          else{
+          } else {
             setUpvotes(data);
             console.log(data);
           }
