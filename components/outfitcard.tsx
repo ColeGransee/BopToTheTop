@@ -23,7 +23,7 @@ export const OutfitCard = (props: any) => {
   }, [upvotes]);
 
   const handleUpvote = () => {
-    if (props.title) {
+    if (username) {
       fetch("http://127.0.0.1:8000/upvote/", {
         method: "POST",
         body: JSON.stringify({
