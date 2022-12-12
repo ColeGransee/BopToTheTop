@@ -17,6 +17,11 @@ export const OutfitCard = (props: any) => {
     // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
   }, []);
 
+  useEffect(() => {
+    setUpvotes(upvotes);
+    // empty dependency array means this effect will only run oncfe (like componentDidMount in classes)
+  }, [upvotes]);
+
   const handleUpvote = () => {
     if (props.title) {
       fetch("http://127.0.0.1:8000/upvote/", {
